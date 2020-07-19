@@ -6,6 +6,8 @@ import { createStackNavigator } from 'react-navigation-stack';
 import SplashScreen from './screen/splashScreen';
 import LoginScreen from './screen/loginScreen';
 
+import Icon from 'react-native-vector-icons/FontAwesome';
+Icon.loadFont();
 const Auth = createStackNavigator({
   //Stack Navigator for Login and Sign up Screen
   LoginScreen: {
