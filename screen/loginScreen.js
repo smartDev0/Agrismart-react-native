@@ -12,6 +12,7 @@ import {
     Platform,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+
 class LoginScreen extends React.Component {
     render() {
         return (
@@ -21,7 +22,7 @@ class LoginScreen extends React.Component {
                         <View
                             style={{
                                 width: '100%',
-                                height: 500,
+                                height: 400,
                                 resizeMode: 'cover',
                                 position: 'absolute',
                                 top: 0,
@@ -34,7 +35,7 @@ class LoginScreen extends React.Component {
                                     width: 250,
                                     height: 180,
                                     resizeMode: 'contain',
-                                    marginTop: 60,
+                                    marginTop: 30,
                                 }}
                             />
                         </View>
@@ -52,7 +53,7 @@ class LoginScreen extends React.Component {
                                 <TextInput
                                     style={styles.inputStyle}
                                     // onChangeText={userEmail => this.setState({ userEmail })}
-                                    placeholder="User Name"
+                                    placeholder="Email"
                                     placeholderTextColor="#a6b0bb"
                                     autoCapitalize="none"
                                     keyboardType="email-address"
@@ -74,29 +75,30 @@ class LoginScreen extends React.Component {
                                     secureTextEntry={true}
                                 />
                             </View>
-                            {/* {this.state.errortext != '' ? (
-                                <Text style={styles.errorTextStyle}> {this.state.errortext} </Text>
-                            ) : null} */}
                             <Text style={styles.forgotpasswordTextStyle}>
                                 Forgot Password?
-              </Text>
-
-                            <View style={styles.registerTextStyle}>
+                            </Text>
+                            {/* <View style={styles.registerTextStyle}>
                                 <Text style={styles.donhaveaccountTextStyle}>
                                     Don't have an account ?
-                </Text>
+                                </Text>
                                 <Text
                                     style={styles.signupTextStyle}
                                 // onPress={() => this.props.navigation.navigate('RegisterScreen')}
                                 >
                                     Sign Up!
-                </Text>
-                            </View>
-                            <Text style={styles.orloginwithTextStyle}>
-                                ──────── Or Login With ────────
-              </Text>
-                            <View style={styles.socialLoginStyle}>
+                                </Text>
+                            </View> */}
+                            <View style={styles.signIn}>
                                 <TouchableOpacity
+                                    style={styles.signInButtonStyle}
+                                    activeOpacity={0.5}
+                                >
+                                    <Text style={styles.signInbuttonTextStyle}>Sign In</Text>
+                                </TouchableOpacity>
+                            </View>
+                            <View style={styles.socialLoginStyle}>
+                                {/* <TouchableOpacity
                                     style={styles.socialButtonStyle}
                                     activeOpacity={0.5}
                                     onPress={this.handleFacebookLogin}>
@@ -104,18 +106,17 @@ class LoginScreen extends React.Component {
                                         <Icon name="facebook" size={12} color="#FFFFFF" />
                                     </View>
                                     <Text style={styles.socialbuttonTextStyle}>Facebook</Text>
-                                </TouchableOpacity>
+                                </TouchableOpacity> */}
                                 <TouchableOpacity
                                     style={styles.socialButtonStyle}
                                     activeOpacity={0.5}
-                                    onPress={this.handleGoogleSubmitPress}>
+                                >
                                     <View style={styles.googleIconStyle}>
-                                        <Icon name="google-plus" size={12} color="#FFFFFF" />
+                                        <Icon name="external-link" size={12} color="#FFFFFF" />
                                     </View>
-                                    <Text style={styles.socialbuttonTextStyle}>Google +</Text>
+                                    <Text style={styles.socialbuttonTextStyle}>Back to Pin</Text>
                                 </TouchableOpacity>
                             </View>
-                            <Text style={styles.termsTextStyle}>Terms & Conditions</Text>
                         </KeyboardAvoidingView>
                     </View>
                 </ScrollView>
@@ -155,7 +156,7 @@ const styles = StyleSheet.create({
         marginTop: -20,
     },
     titleTextStyle: {
-        color: '#1274bb',
+        color: 'green',
         fontSize: 20,
         fontWeight: 'bold',
     },
@@ -190,6 +191,12 @@ const styles = StyleSheet.create({
         color: '#333',
         paddingVertical: 10,
     },
+    signInbuttonTextStyle: {
+        color: 'white',
+        // paddingVertical: 10,
+        padding: 10,
+        fontSize: 18,
+    },
     inputStyle: {
         flex: 1,
         color: '#333',
@@ -201,9 +208,10 @@ const styles = StyleSheet.create({
         borderColor: 'white',
     },
     forgotpasswordTextStyle: {
-        color: '#333',
+        color: 'green',
         textAlign: 'right',
         marginRight: 35,
+        marginTop: 20
     },
     registerTextStyle: {
         textAlign: 'center',
@@ -233,6 +241,16 @@ const styles = StyleSheet.create({
         display: 'flex',
         justifyContent: 'center',
     },
+    signIn: {
+        marginTop: 20,
+        textAlign: 'center',
+        fontWeight: 'bold',
+        fontSize: 16,
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        display: 'flex',
+        justifyContent: 'center',
+    },
     orloginwithTextStyle: {
         textAlign: 'center',
         marginTop: 20,
@@ -252,6 +270,20 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         flexWrap: 'wrap',
     },
+    signInButtonStyle: {
+        width: 250,
+        backgroundColor: 'green',
+        color: 'white',
+        height: 48,
+        alignItems: 'center',
+        borderRadius: 15,
+        marginLeft: 5,
+        marginRight: 5,
+        display: 'flex',
+        justifyContent: 'center',
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+    },
     facebookIconStyle: {
         width: 25,
         height: 25,
@@ -265,12 +297,15 @@ const styles = StyleSheet.create({
     googleIconStyle: {
         width: 25,
         height: 25,
-        backgroundColor: '#d44435',
+        backgroundColor: 'green',
         borderRadius: 25,
-        paddingLeft: 5,
-        paddingTop: 6.5,
+        // paddingLeft: 5,
+        // paddingTop: 6.5,
         position: 'absolute',
-        left: 8,
+        left: 13,
+        display: 'flex',
+        justifyContent: "center",
+        alignItems: "center"
     },
     termsTextStyle: {
         textAlign: 'center',
