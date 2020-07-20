@@ -173,7 +173,7 @@ const styles = StyleSheet.create({
         marginTop: -20,
     },
     titleTextStyle: {
-        color: 'green',
+        color: '#6cab3c',
         fontSize: 20,
         fontWeight: 'bold',
     },
@@ -225,7 +225,7 @@ const styles = StyleSheet.create({
         borderColor: 'white',
     },
     forgotpasswordTextStyle: {
-        color: 'green',
+        color: '#6cab3c',
         textAlign: 'right',
         marginRight: 35,
         marginTop: 20
@@ -289,7 +289,7 @@ const styles = StyleSheet.create({
     },
     signInButtonStyle: {
         width: 250,
-        backgroundColor: 'green',
+        backgroundColor: '#6cab3c',
         color: 'white',
         height: 48,
         alignItems: 'center',
@@ -314,7 +314,7 @@ const styles = StyleSheet.create({
     googleIconStyle: {
         width: 25,
         height: 25,
-        backgroundColor: 'green',
+        backgroundColor: '#6cab3c',
         borderRadius: 25,
         // paddingLeft: 5,
         // paddingTop: 6.5,
