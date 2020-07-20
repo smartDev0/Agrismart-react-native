@@ -49,7 +49,7 @@ class SplashScreen extends React.Component {
                         progress={this.state.count}
                         width={150}
                         height={4}
-                        color="#fb9a2e"
+                        color="green"
                         animated={this.state.animating} />
                 </View>
                 {/* <ActivityIndicator

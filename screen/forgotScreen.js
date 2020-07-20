@@ -14,12 +14,11 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Loader from './components/loader';
 
-class LoginScreen extends React.Component {
+class ForgotScreen extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             userEmail: '',
-            userPassword: '',
             loading: true,
             errortext: ''
         }
@@ -56,8 +55,17 @@ class LoginScreen extends React.Component {
                             />
                         </View>
                         <KeyboardAvoidingView enabled style={styles.formSectionStyle}>
+                            <View style={{
+                                position: 'absolute',
+                                right: 20,
+                                top: 20
+                            }}>
+                                <Icon name="close" size={20} color="green"
+                                    onPress={() => this.props.navigation.navigate('LoginScreen')}
+                                />
+                            </View>
                             <View style={styles.SectionStyle}>
-                                <Text style={styles.titleTextStyle}>SIGN IN</Text>
+                                <Text style={styles.titleTextStyle}>RESET PASSWORD</Text>
                             </View>
                             <View style={styles.underlineStyle}>
                                 <Text>───</Text>
@@ -77,61 +85,12 @@ class LoginScreen extends React.Component {
                                     blurOnSubmit={false}
                                 />
                             </View>
-                            <View style={styles.SectionStyle}>
-                                <View style={styles.embediconStyle}>
-                                    <Icon name="lock" size={20} color="#a6b0bb" />
-                                </View>
-                                <TextInput
-                                    style={styles.inputStyle}
-                                    // onChangeText={userPassword => this.setState({ userPassword })}
-                                    placeholder="Password"
-                                    placeholderTextColor="#a6b0bb"
-                                    keyboardType="default"
-                                    blurOnSubmit={false}
-                                    secureTextEntry={true}
-                                />
-                            </View>
-                            <Text style={styles.forgotpasswordTextStyle}
-                                onPress={() => this.props.navigation.navigate('ForgotScreen')}>
-                                Forgot Password?
-                            </Text>
-                            {/* <View style={styles.registerTextStyle}>
-                                <Text style={styles.donhaveaccountTextStyle}>
-                                    Don't have an account ?
-                                </Text>
-                                <Text
-                                    style={styles.signupTextStyle}
-                                // onPress={() => this.props.navigation.navigate('RegisterScreen')}
-                                >
-                                    Sign Up!
-                                </Text>
-                            </View> */}
                             <View style={styles.signIn}>
                                 <TouchableOpacity
                                     style={styles.signInButtonStyle}
                                     activeOpacity={0.5}
                                 >
-                                    <Text style={styles.signInbuttonTextStyle}>Sign In</Text>
-                                </TouchableOpacity>
-                            </View>
-                            <View style={styles.socialLoginStyle}>
-                                {/* <TouchableOpacity
-                                    style={styles.socialButtonStyle}
-                                    activeOpacity={0.5}
-                                    onPress={this.handleFacebookLogin}>
-                                    <View style={styles.facebookIconStyle}>
-                                        <Icon name="facebook" size={12} color="#FFFFFF" />
-                                    </View>
-                                    <Text style={styles.socialbuttonTextStyle}>Facebook</Text>
-                                </TouchableOpacity> */}
-                                <TouchableOpacity
-                                    style={styles.socialButtonStyle}
-                                    activeOpacity={0.5}
-                                >
-                                    <View style={styles.googleIconStyle}>
-                                        <Icon name="external-link" size={12} color="#FFFFFF" />
-                                    </View>
-                                    <Text style={styles.socialbuttonTextStyle}>Back to Pin</Text>
+                                    <Text style={styles.signInbuttonTextStyle}>Send</Text>
                                 </TouchableOpacity>
                             </View>
                         </KeyboardAvoidingView>
@@ -142,7 +101,7 @@ class LoginScreen extends React.Component {
     }
 }
 
-export default LoginScreen;
+export default ForgotScreen;
 
 const styles = StyleSheet.create({
     mainBody: {
@@ -161,7 +120,7 @@ const styles = StyleSheet.create({
     SectionStyle: {
         flexDirection: 'row',
         height: 40,
-        marginTop: 20,
+        marginTop: 30,
         marginLeft: 35,
         marginRight: 35,
         margin: 5,

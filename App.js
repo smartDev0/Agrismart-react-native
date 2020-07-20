@@ -5,6 +5,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 
 import SplashScreen from './screen/splashScreen';
 import LoginScreen from './screen/loginScreen';
+import ForgotScreen from './screen/forgotScreen'
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 Icon.loadFont();
@@ -26,6 +27,17 @@ const Auth = createStackNavigator({
   //     headerTintColor: '#fff',
   //   },
   // },
+  ForgotScreen: {
+    screen: ForgotScreen,
+    navigationOptions: {
+      headerShown: false,
+      // title: 'Forgot',
+      // headerStyle: {
+      //   backgroundColor: '#307ecc',
+      // },
+      // headerTintColor: '#fff',
+    },
+  },
 });
 
 const App = createSwitchNavigator({
