@@ -14,12 +14,14 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Loader from '../components/loader';
 
-class LoginScreen extends React.Component {
+class PinScreen extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            userEmail: '',
-            userPassword: '',
+            firstValue: '',
+            secondValue: '',
+            thirdValue: '',
+            fourthValue: '',
             loading: true,
             errortext: ''
         }
@@ -56,63 +58,108 @@ class LoginScreen extends React.Component {
                             />
                         </View>
                         <KeyboardAvoidingView enabled style={styles.formSectionStyle}>
-                            <View style={styles.SectionStyle}>
-                                <Text style={styles.titleTextStyle}>SIGN IN</Text>
+                            <View style={{
+                                position: 'absolute',
+                                right: 20,
+                                top: 20
+                            }}>
+                                <Icon name="close" size={20} color="#6cab3c"
+                                    onPress={() => this.props.navigation.navigate('LoginScreen')}
+                                />
                             </View>
-                            <View style={styles.underlineStyle}>
+                            <View style={styles.SectionStyle}>
+                                <Text style={styles.titleTextStyle}>Please enter your PIN</Text>
                             </View>
                             <View style={styles.SectionStyle}>
-                                <View style={styles.embediconStyle}>
-                                    <Icon name="user" size={20} color="#a6b0bb" />
-                                </View>
                                 <TextInput
                                     style={styles.inputStyle}
                                     // onChangeText={userEmail => this.setState({ userEmail })}
-                                    placeholder="Email"
                                     placeholderTextColor="#a6b0bb"
                                     autoCapitalize="none"
                                     keyboardType="email-address"
                                     returnKeyType="next"
-                                    blurOnSubmit={false}
-                                />
-                            </View>
-                            <View style={styles.SectionStyle}>
-                                <View style={styles.embediconStyle}>
-                                    <Icon name="lock" size={20} color="#a6b0bb" />
-                                </View>
-                                <TextInput
-                                    style={styles.inputStyle}
-                                    // onChangeText={userPassword => this.setState({ userPassword })}
-                                    placeholder="Password"
-                                    placeholderTextColor="#a6b0bb"
-                                    keyboardType="default"
+                                    keyboardType='numeric'
+                                    maxLength={1}
                                     blurOnSubmit={false}
                                     secureTextEntry={true}
+                                    onChangeText={
+                                        firstValue => {
+                                            this.setState({ firstValue })
+                                            if (firstValue) this.refs.input_2.focus(); //assumption is TextInput ref is input_2
+                                        }}
+                                    numberOfLines={1}
+                                    ref="input_1"
+                                    value={this.state.firstValue}
+                                /><TextInput
+                                    style={styles.inputStyle}
+                                    // onChangeText={userEmail => this.setState({ userEmail })}
+                                    placeholderTextColor="#a6b0bb"
+                                    autoCapitalize="none"
+                                    keyboardType="email-address"
+                                    returnKeyType="next"
+                                    keyboardType='numeric'
+                                    blurOnSubmit={false}
+                                    maxLength={1}
+                                    secureTextEntry={true}
+                                    ref="input_2"
+                                    value={this.state.secondValue}
+                                    onChangeText={
+                                        secondValue => {
+                                            this.setState({ secondValue })
+                                            if (secondValue) this.refs.input_3.focus();
+                                            else this.refs.input_1.focus();//assumption is TextInput ref is input_2
+                                        }}
+                                    numberOfLines={1}
+                                />
+                                <TextInput
+                                    style={styles.inputStyle}
+                                    // onChangeText={userEmail => this.setState({ userEmail })}
+                                    placeholderTextColor="#a6b0bb"
+                                    autoCapitalize="none"
+                                    keyboardType="email-address"
+                                    returnKeyType="next"
+                                    keyboardType='numeric'
+                                    blurOnSubmit={false}
+                                    maxLength={1}
+                                    secureTextEntry={true}
+                                    ref="input_3"
+                                    value={this.state.thirdValue}
+                                    onChangeText={
+                                        thirdValue => {
+                                            this.setState({ thirdValue })
+                                            if (thirdValue) this.refs.input_4.focus();
+                                            else this.refs.input_2.focus();//assumption is TextInput ref is input_2
+                                        }}
+                                    numberOfLines={1}
+                                />
+                                <TextInput
+                                    style={styles.inputStyle}
+                                    // onChangeText={userEmail => this.setState({ userEmail })}
+                                    placeholderTextColor="#a6b0bb"
+                                    autoCapitalize="none"
+                                    keyboardType="email-address"
+                                    returnKeyType="next"
+                                    keyboardType='numeric'
+                                    blurOnSubmit={false}
+                                    maxLength={1}
+                                    secureTextEntry={true}
+                                    ref="input_4"
+                                    value={this.state.fourthValue}
+                                    onChangeText={
+                                        fourthValue => {
+                                            this.setState({ fourthValue })
+                                            if (fourthValue) this.refs.input_4.focus();
+                                            else this.refs.input_3.focus();//assumption is TextInput ref is input_2
+                                        }}
+                                    numberOfLines={1}
                                 />
                             </View>
-                            <Text style={styles.forgotpasswordTextStyle}
-                                onPress={() => this.props.navigation.navigate('ForgotScreen')}>
-                                Forgot Password?
-                            </Text>
                             <View style={styles.signIn}>
                                 <TouchableOpacity
                                     style={styles.signInButtonStyle}
                                     activeOpacity={0.5}
-                                    onPress={() => this.props.navigation.navigate('Home')}
                                 >
-                                    <Text style={styles.signInbuttonTextStyle}>Sign In</Text>
-                                </TouchableOpacity>
-                            </View>
-                            <View style={styles.socialLoginStyle}>
-                                <TouchableOpacity
-                                    style={styles.socialButtonStyle}
-                                    activeOpacity={0.5}
-                                    onPress={() => this.props.navigation.navigate('PinScreen')}
-                                >
-                                    <View style={styles.googleIconStyle}>
-                                        <Icon name="external-link" size={12} color="#FFFFFF" />
-                                    </View>
-                                    <Text style={styles.socialbuttonTextStyle}>Back to Pin</Text>
+                                    <Text style={styles.signInbuttonTextStyle}>Verify</Text>
                                 </TouchableOpacity>
                             </View>
                         </KeyboardAvoidingView>
@@ -123,7 +170,7 @@ class LoginScreen extends React.Component {
     }
 }
 
-export default LoginScreen;
+export default PinScreen;
 
 const styles = StyleSheet.create({
     mainBody: {
@@ -142,7 +189,7 @@ const styles = StyleSheet.create({
     SectionStyle: {
         flexDirection: 'row',
         height: 40,
-        marginTop: 20,
+        marginTop: 30,
         marginLeft: 35,
         marginRight: 35,
         margin: 5,
@@ -197,14 +244,14 @@ const styles = StyleSheet.create({
         fontSize: 18,
     },
     inputStyle: {
-        flex: 1,
+        flex: 0.1,
         color: '#333',
         backgroundColor: '#FFFFFF',
-        paddingRight: 15,
         borderWidth: 1,
-        borderTopRightRadius: 30,
-        borderBottomRightRadius: 30,
         borderColor: 'white',
+        marginLeft: 10,
+        marginRight: 10
+
     },
     forgotpasswordTextStyle: {
         color: '#6cab3c',

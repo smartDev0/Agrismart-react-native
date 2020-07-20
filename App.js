@@ -5,37 +5,29 @@ import { createStackNavigator } from 'react-navigation-stack';
 
 import SplashScreen from './screen/SplashScreen';
 import LoginScreen from './screen/auth/LoginScreen';
-import ForgotScreen from './screen/auth/ForgotScreen'
+import ForgotScreen from './screen/auth/ForgotScreen';
+import PinScreen from './screen/auth/PinScreen'
 import DrawerNavigationRoutes from './screen/DrawerNavigationRoutes';
 import Icon from 'react-native-vector-icons/FontAwesome';
 Icon.loadFont();
 const Auth = createStackNavigator({
   //Stack Navigator for Login and Sign up Screen
+  PinScreen: {
+    screen: PinScreen,
+    navigationOptions: {
+      headerShown: false,
+    },
+  },
   LoginScreen: {
     screen: LoginScreen,
     navigationOptions: {
       headerShown: false,
     },
   },
-  // RegisterScreen: {
-  //   screen: RegisterScreen,
-  //   navigationOptions: {
-  //     title: 'Register',
-  //     headerStyle: {
-  //       backgroundColor: '#307ecc',
-  //     },
-  //     headerTintColor: '#fff',
-  //   },
-  // },
   ForgotScreen: {
     screen: ForgotScreen,
     navigationOptions: {
       headerShown: false,
-      // title: 'Forgot',
-      // headerStyle: {
-      //   backgroundColor: '#307ecc',
-      // },
-      // headerTintColor: '#fff',
     },
   },
 });
