@@ -34,7 +34,6 @@ class SidebarMenu extends React.Component {
                         onPress: () => {
                             AsyncStorage.clear();
                             this.props.navigation.navigate('Auth');
-                            console.log('logout');
                         },
                     },
                 ],
@@ -42,7 +41,7 @@ class SidebarMenu extends React.Component {
             );
         } else {
             this.props.navigation.toggleDrawer();
-            global.currentScreenIndex = screenToNavigate;
+            // global.currentScreenIndex = screenToNavigate;
             this.props.navigation.navigate(screenToNavigate);
         }
     };
@@ -95,10 +94,10 @@ class SidebarMenu extends React.Component {
                 navOptionName: 'Apply Leave',
                 screenToNavigate: 'ApplyLeave',
             },
-            {
-                navOptionName: 'Setting',
-                screenToNavigate: 'Setting',
-            },
+            // {
+            //     navOptionName: 'Setting',
+            //     screenToNavigate: 'Setting',
+            // },
             {
                 navOptionName: 'Notifications',
                 screenToNavigate: 'Notifications',
@@ -124,7 +123,7 @@ class SidebarMenu extends React.Component {
                             }}
                         />
                     </View>
-                    <Text style={stylesSidebar.profileHeaderText}>Sarah Anderson</Text>
+                    <Text style={stylesSidebar.profileHeaderText}>Zakaria Ouatab</Text>
                     <TouchableOpacity style={{ position: 'absolute', right: 5, top: 33, paddingHorizontal: 10 }} onPress={() => this.props.navigation.toggleDrawer()}>
                         <Icon name="angle-left" size={25} color="#FFFFFF" />
                     </TouchableOpacity>
@@ -132,7 +131,7 @@ class SidebarMenu extends React.Component {
                 <View style={stylesSidebar.profileHeaderLine} />
                 <View style={{ width: '100%', flex: 1, marginBottom: 30 }}>
                     {items.map((item, key) => (
-                        <TouchableOpacity onPress={() =>
+                        <TouchableOpacity key={key} onPress={() =>
                             this.handleClick(key, item.screenToNavigate)
                         }>
                             <View

@@ -98,7 +98,7 @@ class LoginScreen extends React.Component {
                                 <TouchableOpacity
                                     style={styles.signInButtonStyle}
                                     activeOpacity={0.5}
-                                    onPress={() => this.props.navigation.navigate('Home')}
+                                    onPress={() => this.props.navigation.navigate('Timesheet')}
                                 >
                                     <Text style={styles.signInbuttonTextStyle}>Sign In</Text>
                                 </TouchableOpacity>
