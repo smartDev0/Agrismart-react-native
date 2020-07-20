@@ -12,7 +12,7 @@ import {
     Platform,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import Loader from './components/loader';
+import Loader from '../components/loader';
 
 class LoginScreen extends React.Component {
     constructor(props) {
@@ -46,7 +46,7 @@ class LoginScreen extends React.Component {
                             }}></View>
                         <View style={{ alignItems: 'center' }}>
                             <Image
-                                source={require('../image/Agrismart-Logo.png')}
+                                source={require('../../image/Agrismart-Logo.png')}
                                 style={{
                                     width: 250,
                                     height: 180,

@@ -3,9 +3,9 @@ import { StyleSheet, Text, View } from 'react-native';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
-import SplashScreen from './screen/splashScreen';
-import LoginScreen from './screen/loginScreen';
-import ForgotScreen from './screen/forgotScreen'
+import SplashScreen from './screen/SplashScreen';
+import LoginScreen from './screen/auth/LoginScreen';
+import ForgotScreen from './screen/auth/ForgotScreen'
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 Icon.loadFont();
