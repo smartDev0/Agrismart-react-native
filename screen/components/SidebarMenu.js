@@ -2,28 +2,23 @@
 import React from 'react';
 
 //Import all required component
-import { View, StyleSheet, Text, Alert } from 'react-native';
+import { Dimensions, Platform, View, StyleSheet, Text, Alert, Image, ScrollView, TouchableOpacity } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
-const SidebarMenu = props => {
-    let items = [
-        {
-            navOptionName: 'Home',
-            screenToNavigate: 'HomeScreen',
-        },
-        // {
-        //     navOptionName: 'Setting Screen',
-        //     screenToNavigate: 'SettingsScreen',
-        // },
-        {
-            navOptionName: 'Logout',
-            screenToNavigate: 'logout',
-        },
-    ];
+const d = Dimensions.get("window");
+const isX = Platform.OS === "ios" && (d.height > 800 || d.width > 800) ? true : false;
 
-    const handleClick = (index, screenToNavigate) => {
+class SidebarMenu extends React.Component {
+
+    constructor(props) {
+        super(props);
+    }
+
+    handleClick = (index, screenToNavigate) => {
         if (screenToNavigate == 'logout') {
-            props.navigation.toggleDrawer();
+            this.props.navigation.toggleDrawer();
             Alert.alert(
                 'Logout',
                 'Are you sure? You want to logout?',
@@ -38,85 +33,156 @@ const SidebarMenu = props => {
                         text: 'Confirm',
                         onPress: () => {
                             AsyncStorage.clear();
-                            props.navigation.navigate('Auth');
+                            this.props.navigation.navigate('Auth');
+                            console.log('logout');
                         },
                     },
                 ],
                 { cancelable: false }
             );
         } else {
-            props.navigation.toggleDrawer();
+            this.props.navigation.toggleDrawer();
             global.currentScreenIndex = screenToNavigate;
-            props.navigation.navigate(screenToNavigate);
+            this.props.navigation.navigate(screenToNavigate);
         }
     };
-    return (
-        <View style={stylesSidebar.sideMenuContainer}>
-            <View style={stylesSidebar.profileHeader}>
-                <View style={stylesSidebar.profileHeaderPicCircle}>
-                    <Text style={{ fontSize: 25, color: '#307ecc' }}>
-                        {'About React'.charAt(0)}
-                    </Text>
-                </View>
-                <Text style={stylesSidebar.profileHeaderText}>AboutReact</Text>
-            </View>
-            <View style={stylesSidebar.profileHeaderLine} />
-            <View style={{ width: '100%', flex: 1 }}>
-                {items.map((item, key) => (
-                    <View
-                        style={{
-                            flexDirection: 'row',
-                            alignItems: 'center',
-                            padding: 20,
-                            color: 'white',
-                            backgroundColor:
-                                global.currentScreenIndex === item.screenToNavigate
-                                    ? '#4b9ff2'
-                                    : '#307ecc',
-                        }}
-                        key={key}
-                        onStartShouldSetResponder={() =>
-                            handleClick(key, item.screenToNavigate)
-                        }>
-                        <Text style={{ fontSize: 15, color: 'white' }}>
-                            {item.navOptionName}
-                        </Text>
+
+    getIcon = (screenToNavigate) => {
+        let icon = ''
+        switch (screenToNavigate) {
+            case 'MyHours':
+                icon = 'search';
+                break;
+            case 'Timesheet':
+                icon = 'calendar-o';
+                break;
+            case 'Rosters':
+                icon = 'calendar';
+                break;
+            case 'ApplyLeave':
+                icon = 'paper-plane-o';
+                break;
+            case 'Setting':
+                icon = 'cogs';
+                break;
+            case 'Notifications':
+                icon = 'bell-o';
+                break;
+            case 'logout':
+                icon = 'sign-out';
+                break;
+            default:
+                icon = '';
+        }
+        return icon;
+    }
+
+    render() {
+        let items = [
+            {
+                navOptionName: 'Timesheet',
+                screenToNavigate: 'Timesheet',
+            },
+            {
+                navOptionName: 'My Hours',
+                screenToNavigate: 'MyHours',
+            },
+            {
+                navOptionName: 'Rosters',
+                screenToNavigate: 'Rosters',
+            },
+            {
+                navOptionName: 'Apply Leave',
+                screenToNavigate: 'ApplyLeave',
+            },
+            {
+                navOptionName: 'Setting',
+                screenToNavigate: 'Setting',
+            },
+            {
+                navOptionName: 'Notifications',
+                screenToNavigate: 'Notifications',
+            },
+            {
+                navOptionName: 'Logout',
+                screenToNavigate: 'logout',
+            },
+        ];
+
+        return (
+            <ScrollView style={stylesSidebar.sideMenuContainer}>
+                <View style={stylesSidebar.profileHeader}>
+                    <View onStartShouldSetResponder={() => { this.props.navigation.toggleDrawer(); this.props.navigation.navigate('MyProfile') }}>
+                        <Image
+                            source={require('../../image/profile.png')}
+                            style={{
+                                width: 60,
+                                height: 60,
+                                borderRadius: 30,
+                                borderWidth: 2,
+                                borderColor: '#FFFFFF'
+                            }}
+                        />
                     </View>
-                ))}
-            </View>
-        </View>
-    );
+                    <Text style={stylesSidebar.profileHeaderText}>Sarah Anderson</Text>
+                    <TouchableOpacity style={{ position: 'absolute', right: 5, top: 33, paddingHorizontal: 10 }} onPress={() => this.props.navigation.toggleDrawer()}>
+                        <Icon name="angle-left" size={25} color="#FFFFFF" />
+                    </TouchableOpacity>
+                </View>
+                <View style={stylesSidebar.profileHeaderLine} />
+                <View style={{ width: '100%', flex: 1, marginBottom: 30 }}>
+                    {items.map((item, key) => (
+                        <TouchableOpacity onPress={() =>
+                            this.handleClick(key, item.screenToNavigate)
+                        }>
+                            <View
+                                style={{
+                                    flexDirection: 'row',
+                                    alignItems: 'center',
+                                    paddingHorizontal: 20,
+                                    paddingVertical: 14,
+                                    color: 'white',
+                                    backgroundColor:
+                                        global.currentScreenIndex === item.screenToNavigate
+                                            ? '#6cab3c'
+                                            : '#6cab3c',
+                                }}
+                                key={key}
+                            >
+                                <View style={{ width: 20 }}>
+                                    <Icon name={this.getIcon(item.screenToNavigate)} size={14} color="#FFFFFF" />
+                                </View>
+                                <Text style={{ fontSize: 14, color: 'white', marginLeft: 20 }}>
+                                    {item.navOptionName}
+                                </Text>
+                            </View>
+                        </TouchableOpacity>
+                    ))}
+                </View>
+            </ScrollView>
+        );
+    }
 };
 
 const stylesSidebar = StyleSheet.create({
     sideMenuContainer: {
         width: '100%',
         height: '100%',
-        backgroundColor: '#307ecc',
-        paddingTop: 40,
+        backgroundColor: '#6cab3c',
+        paddingTop: (isX ? 40 : 20),
         color: 'white',
     },
     profileHeader: {
         flexDirection: 'row',
-        backgroundColor: '#307ecc',
+        backgroundColor: '#6cab3c',
         padding: 15,
         textAlign: 'center',
-    },
-    profileHeaderPicCircle: {
-        width: 60,
-        height: 60,
-        borderRadius: 60 / 2,
-        color: 'white',
-        backgroundColor: '#ffffff',
-        textAlign: 'center',
-        justifyContent: 'center',
-        alignItems: 'center',
     },
     profileHeaderText: {
         color: 'white',
         alignSelf: 'center',
         paddingHorizontal: 10,
-        fontWeight: 'bold',
+        fontSize: 17
     },
     profileHeaderLine: {
         height: 1,

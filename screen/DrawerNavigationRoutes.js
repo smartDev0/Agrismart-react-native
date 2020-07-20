@@ -38,7 +38,7 @@ const Home_StackNavigator = createStackNavigator({
             headerLeft: () =>
                 <View style={styles.iconContainer}>
                     <NavigationDrawerHeader navigationProps={navigation} />
-                    <Text style={styles.titleStyle}>Home</Text>
+                    <Text style={styles.titleStyle}>Timesheet Entry</Text>
                 </View>,
             headerRight: () => HeaderRight(navigation),
             headerStyle: {
