@@ -109,6 +109,7 @@ class LoginScreen extends React.Component {
                                 <TouchableOpacity
                                     style={styles.signInButtonStyle}
                                     activeOpacity={0.5}
+                                    onPress={() => this.props.navigation.navigate('Home')}
                                 >
                                     <Text style={styles.signInbuttonTextStyle}>Sign In</Text>
                                 </TouchableOpacity>
@@ -126,6 +127,7 @@ class LoginScreen extends React.Component {
                                 <TouchableOpacity
                                     style={styles.socialButtonStyle}
                                     activeOpacity={0.5}
+
                                 >
                                     <View style={styles.googleIconStyle}>
                                         <Icon name="external-link" size={12} color="#FFFFFF" />

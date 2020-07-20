@@ -6,7 +6,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import SplashScreen from './screen/SplashScreen';
 import LoginScreen from './screen/auth/LoginScreen';
 import ForgotScreen from './screen/auth/ForgotScreen'
-
+import DrawerNavigationRoutes from './screen/DrawerNavigationRoutes';
 import Icon from 'react-native-vector-icons/FontAwesome';
 Icon.loadFont();
 const Auth = createStackNavigator({
@@ -53,14 +53,14 @@ const App = createSwitchNavigator({
     /* Auth Navigator which includer Login Signup will come once */
     screen: Auth,
   },
-  // DrawerNavigationRoutes: {
-  //   /* Navigation Drawer as a landing page */
-  //   screen: DrawerNavigationRoutes,
-  //   navigationOptions: {
-  //     /* Hiding header for Navigation Drawer as we will use our custom header */
-  //     headerShown: false,
-  //   },
-  // },
+  DrawerNavigationRoutes: {
+    /* Navigation Drawer as a landing page */
+    screen: DrawerNavigationRoutes,
+    navigationOptions: {
+      /* Hiding header for Navigation Drawer as we will use our custom header */
+      headerShown: false,
+    },
+  },
 });
 
 export default createAppContainer(App);
