@@ -60,7 +60,6 @@ class LoginScreen extends React.Component {
                                 <Text style={styles.titleTextStyle}>SIGN IN</Text>
                             </View>
                             <View style={styles.underlineStyle}>
-                                <Text>───</Text>
                             </View>
                             <View style={styles.SectionStyle}>
                                 <View style={styles.embediconStyle}>
@@ -165,6 +164,7 @@ const styles = StyleSheet.create({
         marginLeft: 35,
         marginRight: 35,
         margin: 5,
+        justifyContent: 'center'
     },
     underlineStyle: {
         flexDirection: 'row',
