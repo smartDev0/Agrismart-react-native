@@ -89,7 +89,6 @@ class Leave extends React.Component {
                     />
                 </View>
                 <View style={styles.SectionStyle}>
-
                     <DatePicker
                         style={{ width: '100%', backgroundColor: '#FFFFFF' }}
                         date={this.state.endDate}

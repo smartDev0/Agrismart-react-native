@@ -9,12 +9,14 @@ import { createDrawerNavigator } from 'react-navigation-drawer';
 import { Badge } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import HomeScreen from './drawerScreens/home/HomeScreen';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 import NavigationDrawerHeader from './components/NavigationDrawerHeader';
 import SidebarMenu from './components/SidebarMenu'
 import MyProfile from './drawerScreens/myProfile/MyProfile';
 import UpdateProfile from './drawerScreens/myProfile/UpdateProfile';
 import Notifications from './drawerScreens/notifications/Notifications'
-import Leave from './drawerScreens/leave/Leave'
+import Leave from './drawerScreens/leave/Leave';
+
 
 const d = Dimensions.get("window");
 const isX = Platform.OS === "ios" && (d.height > 800 || d.width > 800) ? true : false;
@@ -93,7 +95,7 @@ const UpdateProfileActivity_StackNavigator = createStackNavigator({
             </View>,
             headerLeft: () =>
                 <View style={styles.iconContainer}>
-                    <NavigationDrawerHeader navigationProps={navigation} />
+                    <AntDesign name="arrowleft" size={25} color="#FFFFFF" onPress={() => navigation.navigate('MyProfile')} />
                     <Text style={styles.titleStyle}>Profile</Text>
                 </View>,
             headerRight: () => HeaderRight(navigation),
