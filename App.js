@@ -10,6 +10,7 @@ import PinScreen from './screen/auth/PinScreen'
 import DrawerNavigationRoutes from './screen/DrawerNavigationRoutes';
 import Icon from 'react-native-vector-icons/FontAwesome';
 Icon.loadFont();
+console.disableYellowBox = true;
 const Auth = createStackNavigator({
   //Stack Navigator for Login and Sign up Screen
   PinScreen: {
