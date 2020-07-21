@@ -20,7 +20,7 @@ import Loader from '../../components/loader';
 import DatePicker from 'react-native-datepicker';
 import RNPickerSelect from 'react-native-picker-select';
 import Icon from 'react-native-vector-icons/FontAwesome';
-class HomeScreen extends React.Component {
+class EditTimesheetScreen extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -90,129 +90,6 @@ class HomeScreen extends React.Component {
                     <Modal
                         animationType="none"
                         transparent={true}
-                        visible={this.state.modalVisible}
-                        onRequestClose={() => {
-                            Alert.alert("Modal has been closed.");
-                        }}
-                    >
-                        <View style={styles.centeredView}>
-                            <View style={styles.modalView}>
-                                <View style={{ alignItems: 'center' }}>
-                                    <Text style={{
-                                        color: '#6cab3c',
-                                        fontSize: 20,
-                                        fontWeight: 'bold',
-                                    }}>Add PIN</Text>
-                                </View>
-                                <View style={styles.SectionStyle}>
-                                    <TextInput
-                                        style={styles.inputPinStyle}
-                                        // onChangeText={userEmail => this.setState({ userEmail })}
-                                        placeholderTextColor="#a6b0bb"
-                                        autoCapitalize="none"
-                                        keyboardType="email-address"
-                                        returnKeyType="next"
-                                        keyboardType='numeric'
-                                        maxLength={1}
-                                        blurOnSubmit={false}
-                                        secureTextEntry={true}
-                                        onChangeText={
-                                            firstValue => {
-                                                this.setState({ firstValue })
-                                                if (firstValue) this.refs.input_2.focus(); //assumption is TextInput ref is input_2
-                                            }}
-                                        numberOfLines={1}
-                                        ref="input_1"
-                                        value={this.state.firstValue}
-                                    />
-                                    <TextInput
-                                        style={styles.inputPinStyle}
-                                        // onChangeText={userEmail => this.setState({ userEmail })}
-                                        placeholderTextColor="#a6b0bb"
-                                        autoCapitalize="none"
-                                        keyboardType="email-address"
-                                        returnKeyType="next"
-                                        keyboardType='numeric'
-                                        blurOnSubmit={false}
-                                        maxLength={1}
-                                        secureTextEntry={true}
-                                        ref="input_2"
-                                        value={this.state.secondValue}
-                                        onChangeText={
-                                            secondValue => {
-                                                this.setState({ secondValue })
-                                                if (secondValue) this.refs.input_3.focus();
-                                                else this.refs.input_1.focus();//assumption is TextInput ref is input_2
-                                            }}
-                                        numberOfLines={1}
-                                    />
-                                    <TextInput
-                                        style={styles.inputPinStyle}
-                                        // onChangeText={userEmail => this.setState({ userEmail })}
-                                        placeholderTextColor="#a6b0bb"
-                                        autoCapitalize="none"
-                                        keyboardType="email-address"
-                                        returnKeyType="next"
-                                        keyboardType='numeric'
-                                        blurOnSubmit={false}
-                                        maxLength={1}
-                                        secureTextEntry={true}
-                                        ref="input_3"
-                                        value={this.state.thirdValue}
-                                        onChangeText={
-                                            thirdValue => {
-                                                this.setState({ thirdValue })
-                                                if (thirdValue) this.refs.input_4.focus();
-                                                else this.refs.input_2.focus();//assumption is TextInput ref is input_2
-                                            }}
-                                        numberOfLines={1}
-                                    />
-                                    <TextInput
-                                        style={styles.inputPinStyle}
-                                        // onChangeText={userEmail => this.setState({ userEmail })}
-                                        placeholderTextColor="#a6b0bb"
-                                        autoCapitalize="none"
-                                        keyboardType="email-address"
-                                        returnKeyType="next"
-                                        keyboardType='numeric'
-                                        blurOnSubmit={false}
-                                        maxLength={1}
-                                        secureTextEntry={true}
-                                        ref="input_4"
-                                        value={this.state.fourthValue}
-                                        onChangeText={
-                                            fourthValue => {
-                                                this.setState({ fourthValue })
-                                                if (fourthValue) this.refs.input_4.focus();
-                                                else this.refs.input_3.focus();//assumption is TextInput ref is input_2
-                                            }}
-                                        numberOfLines={1}
-                                    />
-                                </View>
-                                <View style={[styles.SectionStyle, { justifyContent: 'flex-end', marginBottom: 40 }]}>
-                                    <TouchableOpacity
-                                        style={[styles.buttonStyle, { backgroundColor: 'lightgrey', marginRight: 20 }]}
-                                        activeOpacity={0.5}
-                                        onPress={() => {
-                                            this.setModalVisible(!this.state.modalVisible);
-                                        }}>
-                                        <Text style={styles.buttonTextStyle}>Later</Text>
-                                    </TouchableOpacity>
-                                    <TouchableOpacity
-                                        style={styles.buttonStyle}
-                                        activeOpacity={0.5}
-                                    >
-                                        <Text style={styles.buttonTextStyle}>Add</Text>
-                                    </TouchableOpacity>
-                                </View>
-                            </View>
-                        </View>
-                    </Modal>
-                </View>
-                <View style={styles.centeredView}>
-                    <Modal
-                        animationType="none"
-                        transparent={true}
                         visible={this.state.timeSheetModalVisible}
                         onRequestClose={() => {
                             Alert.alert("Modal has been closed.");
@@ -264,7 +141,7 @@ class HomeScreen extends React.Component {
                         activeOpacity={0.5}
                         onPress={() => this.showTimesheetModal()}
                     >
-                        <Text style={styles.buttonTextStyle}>View the added entries</Text>
+                        <Text style={styles.buttonTextStyle}>View Timesheet History</Text>
                     </TouchableOpacity>
                 </View>
                 <View style={styles.titleSectionStyle}>
@@ -362,7 +239,7 @@ class HomeScreen extends React.Component {
                 </View>
                 <View style={styles.contactSectionStyle}>
                     <DatePicker
-                        style={{ width: '100%', backgroundColor: '#FFFFFF', flex: 0.6 }}
+                        style={{ width: '100%', backgroundColor: '#FFFFFF', flex: 1 }}
                         date={this.state.startTime}
                         mode="time"
                         placeholder="startTime"
@@ -381,16 +258,6 @@ class HomeScreen extends React.Component {
                         }}
                         onDateChange={(date) => { this.setState({ startTime: date }) }}
                     />
-                    <View style={{ flex: 0.05 }}></View>
-                    <View style={{ flex: 0.35 }}>
-                        <TouchableOpacity
-                            style={styles.timerStartButtonStyle}
-                            activeOpacity={0.5}
-                        // onPress={() => this.props.navigation.navigate("MyProfile")}
-                        >
-                            <Text style={styles.buttonTextStyle}>Start</Text>
-                        </TouchableOpacity>
-                    </View>
                 </View>
                 <View style={styles.titleSectionStyle}>
                     <Text style={styles.blackTitleTextStyle}>
@@ -399,7 +266,7 @@ class HomeScreen extends React.Component {
                 </View>
                 <View style={styles.contactSectionStyle}>
                     <DatePicker
-                        style={{ width: '100%', backgroundColor: '#FFFFFF', flex: 0.6 }}
+                        style={{ width: '100%', backgroundColor: '#FFFFFF', flex: 1 }}
                         date={this.state.endTime}
                         mode="time"
                         placeholder="endTime"
@@ -418,16 +285,7 @@ class HomeScreen extends React.Component {
                         }}
                         onDateChange={(date) => { this.setState({ endTime: date }) }}
                     />
-                    <View style={{ flex: 0.05 }}></View>
-                    <View style={{ flex: 0.35 }}>
-                        <TouchableOpacity
-                            style={styles.timerStopButtonStyle}
-                            activeOpacity={0.5}
-                        // onPress={() => this.props.navigation.navigate("MyProfile")}
-                        >
-                            <Text style={styles.buttonTextStyle}>Stop</Text>
-                        </TouchableOpacity>
-                    </View>
+
                 </View>
                 <View style={styles.titleSectionStyle}>
                     <Text style={styles.blackTitleTextStyle}>
@@ -488,7 +346,7 @@ class HomeScreen extends React.Component {
                         style={styles.schedulebuttonStyle}
                         activeOpacity={0.5}
                         onPress={() => this.props.navigation.navigate("MyProfile")}>
-                        <Text style={styles.buttonTextStyle}>Add</Text>
+                        <Text style={styles.buttonTextStyle}>Update</Text>
                     </TouchableOpacity>
                 </View>
                 <View style={styles.titleSectionStyle}>
@@ -501,7 +359,7 @@ class HomeScreen extends React.Component {
 
     }
 }
-export default HomeScreen;
+export default EditTimesheetScreen;
 const pickerSelectStyles = StyleSheet.create({
     viewContainer: {
         flex: 1,

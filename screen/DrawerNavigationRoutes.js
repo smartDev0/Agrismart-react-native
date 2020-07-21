@@ -16,7 +16,7 @@ import MyProfile from './drawerScreens/myProfile/MyProfile';
 import UpdateProfile from './drawerScreens/myProfile/UpdateProfile';
 import Notifications from './drawerScreens/notifications/Notifications'
 import Leave from './drawerScreens/leave/Leave';
-
+import EditTimesheetScreen from './drawerScreens/home/EditTimesheetScreen'
 
 const d = Dimensions.get("window");
 const isX = Platform.OS === "ios" && (d.height > 800 || d.width > 800) ? true : false;
@@ -47,6 +47,31 @@ const Home_StackNavigator = createStackNavigator({
                 <View style={styles.iconContainer}>
                     <NavigationDrawerHeader navigationProps={navigation} />
                     <Text style={styles.titleStyle}>Timesheet</Text>
+                </View>,
+            headerRight: () => HeaderRight(navigation),
+            headerStyle: {
+                backgroundColor: '#6cab3c',
+                height: Platform.OS === "ios" && isX ? 120 : 100,
+                elevation: 0,
+                shadowOpacity: 0,
+                borderBottomWidth: 0
+            },
+            headerTintColor: '#fff',
+            cardStyle: { backgroundColor: Platform.OS === "ios" ? '#0071bc' : '#f4f5f7' }
+        }),
+    },
+});
+const Timesheet_StackNavigator = createStackNavigator({
+    EditTimesheet: {
+        screen: EditTimesheetScreen,
+        navigationOptions: ({ navigation }) => ({
+            headerTitle: () => <View style={{ alignItems: 'center' }}>
+                <Text style={styles.logoStyle}>AgriSmart</Text>
+            </View>,
+            headerLeft: () =>
+                <View style={styles.iconContainer}>
+                    <AntDesign name="arrowleft" size={25} color="#FFFFFF" onPress={() => navigation.navigate('Timesheet')} />
+                    <Text style={styles.titleStyle}>Edit Timesheet</Text>
                 </View>,
             headerRight: () => HeaderRight(navigation),
             headerStyle: {
@@ -165,6 +190,9 @@ const DrawerNavigatorRoutes = createDrawerNavigator(
     {
         Timesheet: {
             screen: Home_StackNavigator,
+        },
+        EditTimesheet: {
+            screen: Timesheet_StackNavigator
         },
         MyProfile: {
             screen: MyprofileActivity_StackNavigator,
