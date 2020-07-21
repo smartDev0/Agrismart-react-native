@@ -59,12 +59,7 @@ class HomeScreen extends React.Component {
                                             color: '#6cab3c',
                                             fontSize: 20,
                                             fontWeight: 'bold',
-                                        }}>Add PIN for future logins</Text>
-                                    </View>
-                                    <View style={{ marginVertical: 20 }}>
-                                        <Text style={{ fontSize: 14, color: '#6cab3c', textAlign: 'center' }}>
-                                            PIN complusory for offline access 4 digits only!
-                                    </Text>
+                                        }}>Add PIN</Text>
                                     </View>
                                     <View style={styles.SectionStyle}>
                                         <TextInput
@@ -239,9 +234,9 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(0,0,0,0.5)'
     },
     modalView: {
-        borderTopLeftRadius: 25,
-        borderBottomLeftRadius: 25,
-        borderBottomRightRadius: 25,
+        borderRadius: 25,
+        // borderBottomLeftRadius: 25,
+        // borderBottomRightRadius: 25,
         margin: 20,
         marginTop: 80,
         width: '90%',

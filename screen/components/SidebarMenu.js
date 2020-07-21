@@ -91,7 +91,7 @@ class SidebarMenu extends React.Component {
                 screenToNavigate: 'Rosters',
             },
             {
-                navOptionName: 'Apply Leave',
+                navOptionName: 'Leave',
                 screenToNavigate: 'ApplyLeave',
             },
             // {
@@ -119,13 +119,13 @@ class SidebarMenu extends React.Component {
                                 height: 60,
                                 borderRadius: 30,
                                 borderWidth: 2,
-                                borderColor: '#FFFFFF'
+                                borderColor: '#6cab3c'
                             }}
                         />
                     </View>
                     <Text style={stylesSidebar.profileHeaderText}>Zakaria Ouatab</Text>
                     <TouchableOpacity style={{ position: 'absolute', right: 5, top: 33, paddingHorizontal: 10 }} onPress={() => this.props.navigation.toggleDrawer()}>
-                        <Icon name="angle-left" size={25} color="#FFFFFF" />
+                        <Icon name="angle-left" size={25} color="grey" />
                     </TouchableOpacity>
                 </View>
                 <View style={stylesSidebar.profileHeaderLine} />
@@ -140,18 +140,18 @@ class SidebarMenu extends React.Component {
                                     alignItems: 'center',
                                     paddingHorizontal: 20,
                                     paddingVertical: 14,
-                                    color: 'white',
+                                    color: 'grey',
                                     backgroundColor:
                                         global.currentScreenIndex === item.screenToNavigate
-                                            ? '#6cab3c'
-                                            : '#6cab3c',
+                                            ? 'white'
+                                            : 'white',
                                 }}
                                 key={key}
                             >
                                 <View style={{ width: 20 }}>
-                                    <Icon name={this.getIcon(item.screenToNavigate)} size={14} color="#FFFFFF" />
+                                    <Icon name={this.getIcon(item.screenToNavigate)} size={14} color="grey" />
                                 </View>
-                                <Text style={{ fontSize: 14, color: 'white', marginLeft: 20 }}>
+                                <Text style={{ fontSize: 14, color: 'grey', marginLeft: 20 }}>
                                     {item.navOptionName}
                                 </Text>
                             </View>
@@ -167,18 +167,18 @@ const stylesSidebar = StyleSheet.create({
     sideMenuContainer: {
         width: '100%',
         height: '100%',
-        backgroundColor: '#6cab3c',
+        backgroundColor: 'white',
         paddingTop: (isX ? 40 : 20),
-        color: 'white',
+        color: 'grey',
     },
     profileHeader: {
         flexDirection: 'row',
-        backgroundColor: '#6cab3c',
+        backgroundColor: 'white',
         padding: 15,
         textAlign: 'center',
     },
     profileHeaderText: {
-        color: 'white',
+        color: 'grey',
         alignSelf: 'center',
         paddingHorizontal: 10,
         fontSize: 17

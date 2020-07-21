@@ -13,7 +13,8 @@ import NavigationDrawerHeader from './components/NavigationDrawerHeader';
 import SidebarMenu from './components/SidebarMenu'
 import MyProfile from './drawerScreens/myProfile/MyProfile';
 import UpdateProfile from './drawerScreens/myProfile/UpdateProfile';
-
+import Notifications from './drawerScreens/notifications/Notifications'
+import Leave from './drawerScreens/leave/Leave'
 
 const d = Dimensions.get("window");
 const isX = Platform.OS === "ios" && (d.height > 800 || d.width > 800) ? true : false;
@@ -43,7 +44,7 @@ const Home_StackNavigator = createStackNavigator({
             headerLeft: () =>
                 <View style={styles.iconContainer}>
                     <NavigationDrawerHeader navigationProps={navigation} />
-                    <Text style={styles.titleStyle}>Timesheet Entry</Text>
+                    <Text style={styles.titleStyle}>Timesheet</Text>
                 </View>,
             headerRight: () => HeaderRight(navigation),
             headerStyle: {
@@ -93,7 +94,57 @@ const UpdateProfileActivity_StackNavigator = createStackNavigator({
             headerLeft: () =>
                 <View style={styles.iconContainer}>
                     <NavigationDrawerHeader navigationProps={navigation} />
-                    <Text style={styles.titleStyle}>Update a Profile</Text>
+                    <Text style={styles.titleStyle}>Profile</Text>
+                </View>,
+            headerRight: () => HeaderRight(navigation),
+            headerStyle: {
+                backgroundColor: '#6cab3c',
+                height: Platform.OS === "ios" && isX ? 120 : 100,
+                elevation: 0,
+                shadowOpacity: 0,
+                borderBottomWidth: 0
+            },
+            headerTintColor: '#fff',
+            cardStyle: { backgroundColor: Platform.OS === "ios" ? '#0071bc' : '#f4f5f7' }
+        }),
+    },
+});
+const NotificationsActivity_StackNavigator = createStackNavigator({
+    Notifications: {
+        screen: Notifications,
+        navigationOptions: ({ navigation }) => ({
+            headerTitle: () => <View style={{ alignItems: 'center' }}>
+                <Text style={styles.logoStyle}>AgriSmart</Text>
+            </View>,
+            headerLeft: () =>
+                <View style={styles.iconContainer}>
+                    <NavigationDrawerHeader navigationProps={navigation} />
+                    <Text style={styles.titleStyle}>Notifications</Text>
+                </View>,
+            headerRight: () => HeaderRight(navigation),
+            headerStyle: {
+                backgroundColor: '#6cab3c',
+                height: Platform.OS === "ios" && isX ? 120 : 100,
+                elevation: 0,
+                shadowOpacity: 0,
+                borderBottomWidth: 0
+            },
+            headerTintColor: '#fff',
+            cardStyle: { backgroundColor: Platform.OS === "ios" ? '#0071bc' : '#f4f5f7' }
+        }),
+    },
+});
+const LeaveActivity_StackNavigator = createStackNavigator({
+    ApplyLeave: {
+        screen: Leave,
+        navigationOptions: ({ navigation }) => ({
+            headerTitle: () => <View style={{ alignItems: 'center' }}>
+                <Text style={styles.logoStyle}>AgriSmart</Text>
+            </View>,
+            headerLeft: () =>
+                <View style={styles.iconContainer}>
+                    <NavigationDrawerHeader navigationProps={navigation} />
+                    <Text style={styles.titleStyle}>Leave</Text>
                 </View>,
             headerRight: () => HeaderRight(navigation),
             headerStyle: {
@@ -119,12 +170,12 @@ const DrawerNavigatorRoutes = createDrawerNavigator(
         UpdateProfile: {
             screen: UpdateProfileActivity_StackNavigator,
         },
-        // SettingsScreen: {
-        //     screen: SecondActivity_StackNavigator,
-        //     navigationOptions: {
-        //         drawerLabel: 'Setting Screen',
-        //     },
-        // },
+        Notifications: {
+            screen: NotificationsActivity_StackNavigator,
+        },
+        ApplyLeave: {
+            screen: LeaveActivity_StackNavigator,
+        },
     },
     {
         contentComponent: SidebarMenu,

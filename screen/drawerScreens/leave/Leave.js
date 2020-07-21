@@ -22,21 +22,21 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Divider } from 'react-native-elements';
 import AsyncStorage from '@react-native-community/async-storage';
 import Loader from '../../components/loader';
-
+import DatePicker from 'react-native-datepicker';
+import RNPickerSelect from 'react-native-picker-select';
+import DateTimePicker from '@react-native-community/datetimepicker';
 const d = Dimensions.get("window");
 const isX = Platform.OS === "ios" && (d.height > 800 || d.width > 800) ? true : false;
 
 
-class UpdateProfile extends React.Component {
+class Leave extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             loading: true,
-            firstName: '',
-            lastName: '',
-            email: '',
-            password: '',
-            pinValue: ''
+            startDate: '',
+            endDate: '',
+            comments: ''
         }
     }
     componentDidMount() {
@@ -49,66 +49,83 @@ class UpdateProfile extends React.Component {
         return (
             <ScrollView style={styles.mainSectionStyle} bounces='false' contentContainerStyle={{ alignItems: 'center' }}>
                 <Loader loading={this.state.loading} />
-                <View style={[styles.SectionStyle, { marginTop: 20 }]}>
-                    <TextInput
-                        value={this.state.firstName}
-                        onChangeText={(text) => this.setState({ firstName: text })}
-                        style={styles.inputStyle}
-                        placeholder="First Name"
-                        placeholderTextColor="#a6b0bb"
-                        keyboardType="default"
-                        onSubmitEditing={Keyboard.dismiss}
-                        blurOnSubmit={false}
+                <View style={styles.contactSectionStyle}>
+                    <RNPickerSelect
+                        onValueChange={(value) => console.log(value)}
+                        items={[
+                            { label: 'Football', value: 'football' },
+                            { label: 'Baseball', value: 'baseball' },
+                            { label: 'Hockey', value: 'hockey' },
+                        ]}
+                        Icon={() => {
+                            return <Ionicons name="ios-arrow-down" size={15} />
+                        }}
+                        placeholder={{ label: 'Type', value: '' }}
+                        style={{
+                            ...pickerSelectStyles
+                        }}
                     />
                 </View>
                 <View style={styles.SectionStyle}>
-                    <TextInput
-                        value={this.state.lastName}
-                        onChangeText={(text) => this.setState({ lastName: text })}
-                        style={styles.inputStyle}
-                        placeholder="Last Name"
-                        placeholderTextColor="#a6b0bb"
-                        keyboardType="default"
-                        onSubmitEditing={Keyboard.dismiss}
-                        blurOnSubmit={false}
-                    />
-                </View>
-                <View style={[styles.SectionStyle, { marginTop: 20 }]}>
-                    <TextInput
-                        value={this.state.email}
-                        onChangeText={(text) => this.setState({ email: text })}
-                        style={styles.inputStyle}
-                        placeholder="Email"
-                        placeholderTextColor="#a6b0bb"
-                        keyboardType="default"
-                        onSubmitEditing={Keyboard.dismiss}
-                        blurOnSubmit={false}
-                    />
-                </View>
-                <View style={styles.SectionStyle}>
-                    <TextInput
-                        value={this.state.password}
-                        onChangeText={(text) => this.setState({ password: text })}
-                        style={styles.inputStyle}
-                        placeholder="Password"
-                        placeholderTextColor="#a6b0bb"
-                        keyboardType="default"
-                        onSubmitEditing={Keyboard.dismiss}
-                        blurOnSubmit={false}
-                        secureTextEntry={true}
+                    <DatePicker
+                        style={{ width: '100%', backgroundColor: '#FFFFFF' }}
+                        date={this.state.startDate}
+                        mode="date"
+                        placeholder="Start Date"
+                        format="MM/DD/YYYY"
+                        confirmBtnText="Confirm"
+                        cancelBtnText="Cancel"
+                        customStyles={{
+                            dateIcon: {
+                                position: 'absolute',
+                                right: 0,
+                                top: 4,
+                            },
+                            dateInput: {
+                                borderColor: '#dfdfdf'
+                            }
+                        }}
+                        onDateChange={(date) => { this.setState({ startDate: date }) }}
                     />
                 </View>
                 <View style={styles.SectionStyle}>
+
+                    <DatePicker
+                        style={{ width: '100%', backgroundColor: '#FFFFFF' }}
+                        date={this.state.endDate}
+                        mode="date"
+                        placeholder="End Date"
+                        format="MM/DD/YYYY"
+                        confirmBtnText="Confirm"
+                        cancelBtnText="Cancel"
+                        customStyles={{
+                            dateIcon: {
+                                position: 'absolute',
+                                right: 0,
+                                top: 4,
+                            },
+                            dateInput: {
+                                borderColor: '#dfdfdf'
+                            }
+                        }}
+                        onDateChange={(date) => { this.setState({ endDate: date }) }}
+                    />
+                </View>
+                <View style={styles.titleSectionStyle}>
+                    <Text style={styles.blackTitleTextStyle}>
+                        Comments
+                    </Text>
+                </View>
+                <View style={styles.sectionTextareaStyle}>
                     <TextInput
-                        value={this.state.pinValue}
-                        onChangeText={(text) => this.setState({ pinValue: text })}
-                        style={styles.inputStyle}
-                        placeholder="Pin"
+                        value={this.state.comments}
+                        onChange={(text) => this.setState({ comments: text })}
+                        style={styles.textareaStyle}
+                        multiline={true}
+                        placeholder="Write comments."
                         placeholderTextColor="#a6b0bb"
                         keyboardType="default"
-                        onSubmitEditing={Keyboard.dismiss}
                         blurOnSubmit={false}
-                        secureTextEntry={true}
                     />
                 </View>
                 <View style={styles.SectionStyle}>
@@ -116,7 +133,7 @@ class UpdateProfile extends React.Component {
                         style={styles.schedulebuttonStyle}
                         activeOpacity={0.5}
                         onPress={() => this.props.navigation.navigate("MyProfile")}>
-                        <Text style={styles.buttonTextStyle}>Update</Text>
+                        <Text style={styles.buttonTextStyle}>Apply Now</Text>
                     </TouchableOpacity>
                 </View>
             </ScrollView>
@@ -124,8 +141,22 @@ class UpdateProfile extends React.Component {
     }
 }
 
-export default UpdateProfile;
+export default Leave;
+const pickerSelectStyles = StyleSheet.create({
+    viewContainer: {
+        flex: 1,
+        borderWidth: 1, borderColor: '#dfdfdf',
+        backgroundColor: '#FFFFFF',
+    },
+    headlessAndroidContainer: {
+        backgroundColor: '#FFFFFF',
+        flex: 1
+    },
+    iconContainer: { top: 12, right: 10 },
+    inputAndroid: { height: 40, flex: 1, paddingLeft: 10, borderWidth: 1, borderColor: '#dfdfdf', backgroundColor: '#FFFFFF' },
+    inputIOS: { height: 40, paddingLeft: 10, borderWidth: 1, borderColor: '#dfdfdf', backgroundColor: '#FFFFFF' },
 
+});
 const styles = StyleSheet.create({
     mainSectionStyle: {
         borderTopRightRadius: 50,
@@ -139,6 +170,15 @@ const styles = StyleSheet.create({
         height: 40,
         marginVertical: 10,
         alignItems: 'center',
+    },
+    sectionTextareaStyle: {
+        backgroundColor: '#FFFFFF',
+        padding: 10,
+        marginVertical: 10,
+        borderRadius: 0,
+        width: '100%',
+        borderWidth: 1,
+        borderColor: '#dfdfdf'
     },
     collapseSectionStyle: {
         flexDirection: 'row',
@@ -154,6 +194,11 @@ const styles = StyleSheet.create({
         width: '100%',
         marginVertical: 10,
         alignItems: 'center',
+    },
+    textareaStyle: {
+        height: 120,
+        textAlignVertical: 'top',
+
     },
     schedulebuttonStyle: {
         backgroundColor: '#6cab3c',
