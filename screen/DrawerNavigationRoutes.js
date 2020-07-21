@@ -17,7 +17,8 @@ import UpdateProfile from './drawerScreens/myProfile/UpdateProfile';
 import Notifications from './drawerScreens/notifications/Notifications'
 import Leave from './drawerScreens/leave/Leave';
 import EditTimesheetScreen from './drawerScreens/home/EditTimesheetScreen'
-
+import MyHours from './drawerScreens/myHours/myHours';
+import Rosters from './drawerScreens/rosters/Rosters';
 const d = Dimensions.get("window");
 const isX = Platform.OS === "ios" && (d.height > 800 || d.width > 800) ? true : false;
 
@@ -186,6 +187,56 @@ const LeaveActivity_StackNavigator = createStackNavigator({
         }),
     },
 });
+const HoursActivity_StackNavigator = createStackNavigator({
+    MyHours: {
+        screen: MyHours,
+        navigationOptions: ({ navigation }) => ({
+            headerTitle: () => <View style={{ alignItems: 'center' }}>
+                <Text style={styles.logoStyle}>AgriSmart</Text>
+            </View>,
+            headerLeft: () =>
+                <View style={styles.iconContainer}>
+                    <NavigationDrawerHeader navigationProps={navigation} />
+                    <Text style={styles.titleStyle}>My Hours</Text>
+                </View>,
+            headerRight: () => HeaderRight(navigation),
+            headerStyle: {
+                backgroundColor: '#6cab3c',
+                height: Platform.OS === "ios" && isX ? 120 : 100,
+                elevation: 0,
+                shadowOpacity: 0,
+                borderBottomWidth: 0
+            },
+            headerTintColor: '#fff',
+            cardStyle: { backgroundColor: Platform.OS === "ios" ? '#0071bc' : '#f4f5f7' }
+        }),
+    },
+});
+const RostersActivity_StackNavigator = createStackNavigator({
+    Rosters: {
+        screen: Rosters,
+        navigationOptions: ({ navigation }) => ({
+            headerTitle: () => <View style={{ alignItems: 'center' }}>
+                <Text style={styles.logoStyle}>AgriSmart</Text>
+            </View>,
+            headerLeft: () =>
+                <View style={styles.iconContainer}>
+                    <NavigationDrawerHeader navigationProps={navigation} />
+                    <Text style={styles.titleStyle}>Rosters</Text>
+                </View>,
+            headerRight: () => HeaderRight(navigation),
+            headerStyle: {
+                backgroundColor: '#6cab3c',
+                height: Platform.OS === "ios" && isX ? 120 : 100,
+                elevation: 0,
+                shadowOpacity: 0,
+                borderBottomWidth: 0
+            },
+            headerTintColor: '#fff',
+            cardStyle: { backgroundColor: Platform.OS === "ios" ? '#0071bc' : '#f4f5f7' }
+        }),
+    },
+});
 const DrawerNavigatorRoutes = createDrawerNavigator(
     {
         Timesheet: {
@@ -205,6 +256,12 @@ const DrawerNavigatorRoutes = createDrawerNavigator(
         },
         ApplyLeave: {
             screen: LeaveActivity_StackNavigator,
+        },
+        MyHours: {
+            screen: HoursActivity_StackNavigator,
+        },
+        Rosters: {
+            screen: RostersActivity_StackNavigator,
         },
     },
     {
