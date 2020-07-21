@@ -48,7 +48,7 @@ class HomeScreen extends React.Component {
     setModalVisible = (visible) => {
         this.setState({ modalVisible: visible });
     }
-    componentDidMount() {
+    componentDidUpdate() {
         setTimeout(() => {
             this.setState({ loading: false })
         }, 2000);

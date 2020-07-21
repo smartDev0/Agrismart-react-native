@@ -48,9 +48,9 @@ class ForgotScreen extends React.Component {
                                 source={require('../../image/Agrismart-Logo.png')}
                                 style={{
                                     width: 250,
-                                    height: 180,
+                                    height: 160,
                                     resizeMode: 'contain',
-                                    marginTop: 30,
+                                    marginTop: 20,
                                 }}
                             />
                         </View>
@@ -252,7 +252,7 @@ const styles = StyleSheet.create({
         color: 'white',
         height: 48,
         alignItems: 'center',
-        borderRadius: 15,
+        borderRadius: 5,
         marginLeft: 5,
         marginRight: 5,
         display: 'flex',

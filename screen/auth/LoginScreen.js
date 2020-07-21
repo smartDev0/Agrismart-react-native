@@ -49,9 +49,9 @@ class LoginScreen extends React.Component {
                                 source={require('../../image/Agrismart-Logo.png')}
                                 style={{
                                     width: 250,
-                                    height: 180,
+                                    height: 160,
                                     resizeMode: 'contain',
-                                    marginTop: 30,
+                                    marginTop: 20,
                                 }}
                             />
                         </View>
