@@ -14,6 +14,7 @@ class Rosters extends React.Component {
         this.state = {
             loading: true,
             isEnabled: false,
+            days: []
         }
 
     }
@@ -21,7 +22,9 @@ class Rosters extends React.Component {
         setTimeout(() => {
             this.setState({ loading: false })
         }, 2000);
-        console.log(this.addDays())
+        this.setState({
+            days: this.addDays()
+        })
     }
     toggleChange = () => {
         this.setState({ isEnabled: !this.state.isEnabled })
@@ -40,6 +43,7 @@ class Rosters extends React.Component {
         return datesCollection
     }
     render() {
+
         return (
             <ScrollView style={styles.mainSectionStyle} bounces='false' contentContainerStyle={{ alignItems: 'center' }}>
                 <Loader loading={this.state.loading} />
@@ -65,7 +69,7 @@ class Rosters extends React.Component {
                             onValueChange={(value) => console.log(value)}
                         />
                     </View>
-                    <View style={{ flex: 0.05 }}></View>
+                    <View style={{ flex: 0.02 }}></View>
                     <View style={{ flex: 0.3 }}>
                         <RNPickerSelect
                             items={[
@@ -94,8 +98,8 @@ class Rosters extends React.Component {
                             onValueChange={(value) => console.log(value)}
                         />
                     </View>
-                    <View style={{ flex: 0.05 }}></View>
-                    <View style={{ flex: 0.2, display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+                    <View style={{ flex: 0.02 }}></View>
+                    <View style={{ flex: 0.26, display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
                         <View>
                             <Text style={{}}>
                                 RTO
@@ -112,6 +116,17 @@ class Rosters extends React.Component {
                         </View>
                     </View>
                 </View>
+                {this.state.days.map((data, i) =>
+                    <View style={styles.daySectionStyle} key={i}>
+                        <View>
+                            <Text style={{ textAlign: 'center' }}>
+                                {data}
+                            </Text>
+
+                        </View>
+                    </View>)
+                }
+                <View style={{ padding: 10 }}></View>
             </ScrollView>
         )
     }
@@ -133,4 +148,13 @@ const styles = StyleSheet.create({
         marginVertical: 5,
         alignItems: 'center',
     },
+    daySectionStyle: {
+        flexDirection: 'row',
+        height: 40,
+        marginVertical: 5,
+        alignItems: 'center',
+        borderBottomColor: 'grey',
+        borderBottomWidth: 1,
+        width: '100%',
+    }
 });
