@@ -159,7 +159,7 @@ class PinScreen extends React.Component {
                                     style={styles.signInButtonStyle}
                                     activeOpacity={0.5}
                                 >
-                                    <Text style={styles.signInbuttonTextStyle}>Verify</Text>
+                                    <Text style={styles.signInbuttonTextStyle}>VERIFY</Text>
                                 </TouchableOpacity>
                             </View>
                         </KeyboardAvoidingView>
@@ -322,7 +322,7 @@ const styles = StyleSheet.create({
         color: 'white',
         height: 48,
         alignItems: 'center',
-        borderRadius: 15,
+        borderRadius: 5,
         marginLeft: 5,
         marginRight: 5,
         display: 'flex',

@@ -275,7 +275,7 @@ const styles = StyleSheet.create({
         color: 'white',
         height: 48,
         alignItems: 'center',
-        borderRadius: 15,
+        borderRadius: 5,
         marginLeft: 5,
         marginRight: 5,
         display: 'flex',
