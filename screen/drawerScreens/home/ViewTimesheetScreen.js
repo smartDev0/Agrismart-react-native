@@ -111,8 +111,6 @@ class ViewTimesheetScreen extends React.Component {
                             </View>
                         </View>
                     </View>
-                    <View style={{ height: 50 }}>
-                    </View>
                 </View>
             </ScrollView>
         );
