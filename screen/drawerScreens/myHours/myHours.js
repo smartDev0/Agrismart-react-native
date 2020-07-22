@@ -107,7 +107,7 @@ export default MyHours;
 
 const styles = StyleSheet.create({
     mainSectionStyle: {
-        borderTopRightRadius: 50,
+        // borderTopRightRadius: 50,
         backgroundColor: '#f4f5f7',
         paddingVertical: 20,
         paddingHorizontal: 15,

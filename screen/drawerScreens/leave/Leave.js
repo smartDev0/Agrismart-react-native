@@ -48,92 +48,106 @@ class Leave extends React.Component {
     render() {
         return (
             <ScrollView style={styles.mainSectionStyle} bounces='false' contentContainerStyle={{ alignItems: 'center' }}>
-                <Loader loading={this.state.loading} />
-                <View style={styles.contactSectionStyle}>
-                    <RNPickerSelect
-                        onValueChange={(value) => console.log(value)}
-                        items={[
-                            { label: 'Football', value: 'football' },
-                            { label: 'Baseball', value: 'baseball' },
-                            { label: 'Hockey', value: 'hockey' },
-                        ]}
-                        Icon={() => {
-                            return <Ionicons name="ios-arrow-down" size={15} />
-                        }}
-                        placeholder={{ label: 'Type', value: '' }}
-                        style={{
-                            ...pickerSelectStyles
-                        }}
-                    />
-                </View>
-                <View style={styles.SectionStyle}>
-                    <DatePicker
-                        style={{ width: '100%', backgroundColor: '#FFFFFF' }}
-                        date={this.state.startDate}
-                        mode="date"
-                        placeholder="Start Date"
-                        format="MM/DD/YYYY"
-                        confirmBtnText="Confirm"
-                        cancelBtnText="Cancel"
-                        customStyles={{
-                            dateIcon: {
-                                position: 'absolute',
-                                right: 0,
-                                top: 4,
-                            },
-                            dateInput: {
-                                borderColor: '#dfdfdf'
-                            }
-                        }}
-                        onDateChange={(date) => { this.setState({ startDate: date }) }}
-                    />
-                </View>
-                <View style={styles.SectionStyle}>
-                    <DatePicker
-                        style={{ width: '100%', backgroundColor: '#FFFFFF' }}
-                        date={this.state.endDate}
-                        mode="date"
-                        placeholder="End Date"
-                        format="MM/DD/YYYY"
-                        confirmBtnText="Confirm"
-                        cancelBtnText="Cancel"
-                        customStyles={{
-                            dateIcon: {
-                                position: 'absolute',
-                                right: 0,
-                                top: 4,
-                            },
-                            dateInput: {
-                                borderColor: '#dfdfdf'
-                            }
-                        }}
-                        onDateChange={(date) => { this.setState({ endDate: date }) }}
-                    />
-                </View>
-                <View style={styles.titleSectionStyle}>
-                    <Text style={styles.blackTitleTextStyle}>
-                        Comments
+                <View style={{
+                    backgroundColor: 'white', paddingVertical: 20,
+                    paddingHorizontal: 15,
+                    marginBottom: 40,
+                    width: '100%',
+                    borderTopColor: '#6cab3c',
+                    borderTopWidth: 5,
+                    borderRadius: 4,
+                    borderColor: '#C3C4C6',
+                    borderWidth: 1
+                }}>
+                    <Loader loading={this.state.loading} />
+                    <View style={styles.contactSectionStyle}>
+                        <RNPickerSelect
+                            onValueChange={(value) => console.log(value)}
+                            items={[
+                                { label: 'Football', value: 'football' },
+                                { label: 'Baseball', value: 'baseball' },
+                                { label: 'Hockey', value: 'hockey' },
+                            ]}
+                            Icon={() => {
+                                return <Ionicons name="ios-arrow-down" size={15} />
+                            }}
+                            placeholder={{ label: 'Type', value: '' }}
+                            style={{
+                                ...pickerSelectStyles
+                            }}
+                        />
+                    </View>
+                    <View style={styles.SectionStyle}>
+                        <DatePicker
+                            style={{ width: '100%', backgroundColor: '#FFFFFF' }}
+                            date={this.state.startDate}
+                            mode="date"
+                            placeholder="Start Date"
+                            format="MM/DD/YYYY"
+                            confirmBtnText="Confirm"
+                            cancelBtnText="Cancel"
+                            customStyles={{
+                                dateIcon: {
+                                    position: 'absolute',
+                                    right: 0,
+                                    top: 4,
+                                },
+                                dateInput: {
+                                    borderColor: '#dfdfdf',
+                                    borderRadius: 5
+                                }
+                            }}
+                            onDateChange={(date) => { this.setState({ startDate: date }) }}
+                        />
+                    </View>
+                    <View style={styles.SectionStyle}>
+                        <DatePicker
+                            style={{ width: '100%', backgroundColor: '#FFFFFF' }}
+                            date={this.state.endDate}
+                            mode="date"
+                            placeholder="End Date"
+                            format="MM/DD/YYYY"
+                            confirmBtnText="Confirm"
+                            cancelBtnText="Cancel"
+                            customStyles={{
+                                dateIcon: {
+                                    position: 'absolute',
+                                    right: 0,
+                                    top: 4,
+                                },
+                                dateInput: {
+                                    borderColor: '#dfdfdf',
+                                    borderRadius: 5
+                                }
+                            }}
+                            onDateChange={(date) => { this.setState({ endDate: date }) }}
+                        />
+                    </View>
+                    <View style={styles.titleSectionStyle}>
+                        <Text style={styles.blackTitleTextStyle}>
+                            Comments
                     </Text>
-                </View>
-                <View style={styles.sectionTextareaStyle}>
-                    <TextInput
-                        value={this.state.comments}
-                        onChange={(text) => this.setState({ comments: text })}
-                        style={styles.textareaStyle}
-                        multiline={true}
-                        placeholder="Write comments."
-                        placeholderTextColor="#a6b0bb"
-                        keyboardType="default"
-                        blurOnSubmit={false}
-                    />
-                </View>
-                <View style={styles.SectionStyle}>
-                    <TouchableOpacity
-                        style={styles.schedulebuttonStyle}
-                        activeOpacity={0.5}
-                        onPress={() => this.props.navigation.navigate("MyProfile")}>
-                        <Text style={styles.buttonTextStyle}>Apply Now</Text>
-                    </TouchableOpacity>
+                    </View>
+                    <View style={styles.sectionTextareaStyle}>
+                        <TextInput
+                            value={this.state.comments}
+                            onChange={(text) => this.setState({ comments: text })}
+                            style={styles.textareaStyle}
+                            multiline={true}
+                            placeholder="Write comments."
+                            placeholderTextColor="#a6b0bb"
+                            keyboardType="default"
+                            blurOnSubmit={false}
+                        />
+                    </View>
+                    <View style={styles.SectionStyle}>
+                        <TouchableOpacity
+                            style={styles.schedulebuttonStyle}
+                            activeOpacity={0.5}
+                            onPress={() => this.props.navigation.navigate("MyProfile")}>
+                            <Text style={styles.buttonTextStyle}>Apply Now</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
             </ScrollView>
         )
@@ -146,14 +160,15 @@ const pickerSelectStyles = StyleSheet.create({
         flex: 1,
         borderWidth: 1, borderColor: '#dfdfdf',
         backgroundColor: '#FFFFFF',
+        borderRadius: 5
     },
     headlessAndroidContainer: {
         backgroundColor: '#FFFFFF',
         flex: 1
     },
     iconContainer: { top: 12, right: 10 },
-    inputAndroid: { height: 40, flex: 1, paddingLeft: 10, borderWidth: 1, borderColor: '#dfdfdf', backgroundColor: '#FFFFFF' },
-    inputIOS: { height: 40, paddingLeft: 10, borderWidth: 1, borderColor: '#dfdfdf', backgroundColor: '#FFFFFF' },
+    inputAndroid: { height: 40, },
+    inputIOS: { height: 40, },
 
 });
 const styles = StyleSheet.create({
@@ -177,7 +192,8 @@ const styles = StyleSheet.create({
         borderRadius: 0,
         width: '100%',
         borderWidth: 1,
-        borderColor: '#dfdfdf'
+        borderColor: '#dfdfdf',
+        borderRadius: 5
     },
     collapseSectionStyle: {
         flexDirection: 'row',

@@ -55,96 +55,108 @@ class Rosters extends React.Component {
 
         return (
             <ScrollView style={styles.mainSectionStyle} bounces='false' contentContainerStyle={{ alignItems: 'center' }}>
-                <Loader loading={this.state.loading} />
-                <View style={styles.contactSectionStyle}>
-                    <View style={{ flex: 0.4 }}>
-                        <RNPickerSelect
-                            items={[
-                                { label: 'All Locations', value: 'allLocations' },
-                                { label: 'No Locations', value: 'noLocations' },
-                                { label: 'Bulls', value: 'bulls' },
-                                { label: 'Cambridge', value: 'cambride' },
-                                { label: 'Hamilton', value: 'hamilton' },
-                            ]}
-                            Icon={() => {
-                                return <Ionicons name="ios-arrow-down" size={15} />
-                            }}
-                            style={{
-                                inputAndroid: {height: 40, paddingLeft: 10, borderWidth: 1, borderColor: '#dfdfdf', backgroundColor: '#FFFFFF',borderRadius: 5 },
-                                inputIOS: {height: 40, paddingLeft: 10, borderWidth: 1, borderColor: '#dfdfdf', backgroundColor: '#FFFFFF' },
-                                iconContainer: {top: 12, right: 10 }
-                            }}
-                            placeholder={{ label: 'Type', value: '' }}
-                            onValueChange={(value) => console.log(value)}
-                        />
-                    </View>
-                    <View style={{ flex: 0.02 }}></View>
-                    <View style={{ flex: 0.3 }}>
-                        <RNPickerSelect
-                            items={[
-                                { label: 'January', value: 'January' },
-                                { label: 'February', value: 'February' },
-                                { label: 'March', value: 'March' },
-                                { label: 'April', value: 'April' },
-                                { label: 'May', value: 'May' },
-                                { label: 'June', value: 'June' },
-                                { label: 'July', value: 'July' },
-                                { label: 'August', value: 'August' },
-                                { label: 'September', value: 'September' },
-                                { label: 'October', value: 'October' },
-                                { label: 'November', value: 'November' },
-                                { label: 'December', value: 'December' },
-                            ]}
-                            Icon={() => {
-                                return <Ionicons name="ios-arrow-down" size={15} />
-                            }}
-                            style={{
-                                inputAndroid: { height: 40, paddingLeft: 10, borderWidth: 1, borderColor: '#dfdfdf', backgroundColor: '#FFFFFF' },
-                                inputIOS: { height: 40, paddingLeft: 10, borderWidth: 1, borderColor: '#dfdfdf', backgroundColor: '#FFFFFF' },
-                                iconContainer: { top: 12, right: 10 }
-                            }}
-                            placeholder={{ label: 'Month', value: '' }}
-                            onValueChange={(value) => console.log(value)}
-                        />
-                    </View>
-                    <View style={{ flex: 0.02 }}></View>
-                    <View style={{ flex: 0.26, display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                        <View>
-                            <Text style={{}}>
-                                RTO
-                            </Text>
-                        </View>
-                        <View>
-                            <Switch
-                                trackColor={{ false: "#767577", true: "#6cab3c" }}
-                                thumbColor={this.state.isEnabled ? "#6cab3c" : "#f4f3f4"}
-                                ios_backgroundColor="#3e3e3e"
-                                onValueChange={() => this.toggleChange()}
-                                value={this.state.isEnabled}
+                <View style={{
+                    backgroundColor: 'white', paddingVertical: 20,
+                    paddingHorizontal: 15,
+                    marginBottom: 40,
+                    width: '100%',
+                    borderTopColor: '#6cab3c',
+                    borderTopWidth: 5,
+                    borderRadius: 4,
+                    borderColor: '#C3C4C6',
+                    borderWidth: 1
+                }}>
+                    <Loader loading={this.state.loading} />
+                    <View style={styles.contactSectionStyle}>
+                        <View style={{ flex: 0.4 }}>
+                            <RNPickerSelect
+                                items={[
+                                    { label: 'All Locations', value: 'allLocations' },
+                                    { label: 'No Locations', value: 'noLocations' },
+                                    { label: 'Bulls', value: 'bulls' },
+                                    { label: 'Cambridge', value: 'cambride' },
+                                    { label: 'Hamilton', value: 'hamilton' },
+                                ]}
+                                Icon={() => {
+                                    return <Ionicons name="ios-arrow-down" size={15} />
+                                }}
+                                style={{
+                                    inputAndroid: { height: 40, paddingLeft: 10, borderWidth: 1, borderColor: '#dfdfdf', backgroundColor: '#FFFFFF', borderRadius: 5 },
+                                    inputIOS: { height: 40, paddingLeft: 10, borderWidth: 1, borderColor: '#dfdfdf', backgroundColor: '#FFFFFF' },
+                                    iconContainer: { top: 12, right: 10 }
+                                }}
+                                placeholder={{ label: 'Type', value: '' }}
+                                onValueChange={(value) => console.log(value)}
                             />
                         </View>
-                    </View>
-                </View>
-                <View style={styles.titleSectionStyle}>
-                    <MaterialCommunityIcons name="flask-outline" size={20} color="#6cab3c" />
-                    <Text style={{ fontSize: 17, fontWeight: '500', marginLeft: 5 }}>
-                        Rosters
-                    </Text>
-                </View>
-
-                {
-                    this.state.days.map((data, i) =>
-                        <View style={[styles.sectionStyle, styles.shadowStyle, { borderLeftWidth: 4, borderColor: this.getRandomColor() }]}>
-                            <View style={{ flex: 1, flexDirection: 'column' }}>
-                                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                                    <Icon name="calendar-o" size={20} color="#6cab3c" />
-                                    <Text style={{ fontSize: 16 }}> {data}</Text>
-                                </View>
+                        <View style={{ flex: 0.02 }}></View>
+                        <View style={{ flex: 0.3 }}>
+                            <RNPickerSelect
+                                items={[
+                                    { label: 'January', value: 'January' },
+                                    { label: 'February', value: 'February' },
+                                    { label: 'March', value: 'March' },
+                                    { label: 'April', value: 'April' },
+                                    { label: 'May', value: 'May' },
+                                    { label: 'June', value: 'June' },
+                                    { label: 'July', value: 'July' },
+                                    { label: 'August', value: 'August' },
+                                    { label: 'September', value: 'September' },
+                                    { label: 'October', value: 'October' },
+                                    { label: 'November', value: 'November' },
+                                    { label: 'December', value: 'December' },
+                                ]}
+                                Icon={() => {
+                                    return <Ionicons name="ios-arrow-down" size={15} />
+                                }}
+                                style={{
+                                    inputAndroid: { height: 40, paddingLeft: 10, borderWidth: 1, borderColor: '#dfdfdf', backgroundColor: '#FFFFFF' },
+                                    inputIOS: { height: 40, paddingLeft: 10, borderWidth: 1, borderColor: '#dfdfdf', backgroundColor: '#FFFFFF' },
+                                    iconContainer: { top: 12, right: 10 }
+                                }}
+                                placeholder={{ label: 'Month', value: '' }}
+                                onValueChange={(value) => console.log(value)}
+                            />
+                        </View>
+                        <View style={{ flex: 0.02 }}></View>
+                        <View style={{ flex: 0.26, display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+                            <View>
+                                <Text style={{}}>
+                                    RTO
+                            </Text>
+                            </View>
+                            <View>
+                                <Switch
+                                    trackColor={{ false: "#767577", true: "#6cab3c" }}
+                                    thumbColor={this.state.isEnabled ? "#6cab3c" : "#f4f3f4"}
+                                    ios_backgroundColor="#3e3e3e"
+                                    onValueChange={() => this.toggleChange()}
+                                    value={this.state.isEnabled}
+                                />
                             </View>
                         </View>
-                    )
-                }
-                <View style={{ padding: 10 }}></View>
+                    </View>
+                    <View style={styles.titleSectionStyle}>
+                        <MaterialCommunityIcons name="flask-outline" size={20} color="#6cab3c" />
+                        <Text style={{ fontSize: 17, fontWeight: '500', marginLeft: 5 }}>
+                            Rosters
+                    </Text>
+                    </View>
+
+                    {
+                        this.state.days.map((data, i) =>
+                            <View style={[styles.sectionStyle, styles.shadowStyle, { borderLeftWidth: 4, borderColor: this.getRandomColor() }]}>
+                                <View style={{ flex: 1, flexDirection: 'column' }}>
+                                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                        <Icon name="calendar-o" size={20} color="#6cab3c" />
+                                        <Text style={{ fontSize: 16 }}> {data}</Text>
+                                    </View>
+                                </View>
+                            </View>
+                        )
+                    }
+
+                </View>
             </ScrollView>
         )
     }
@@ -199,11 +211,11 @@ const styles = StyleSheet.create({
     shadowStyle: {
         shadowColor: "#000",
         shadowOffset: {
-                            width: 1,
+            width: 1,
             height: 2,
         },
         shadowOpacity: 0.1,
         shadowRadius: 3.84,
         elevation: 5,
-    },
+    }
 });

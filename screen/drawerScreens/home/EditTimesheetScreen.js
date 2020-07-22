@@ -86,293 +86,301 @@ class EditTimesheetScreen extends React.Component {
         );
         return (
             <ScrollView style={styles.mainSectionStyle} bounces='false' contentContainerStyle={{ alignItems: 'center' }}>
-                <Loader loading={this.state.loading} />
-                <View style={styles.centeredView}>
-                    <Modal
-                        animationType="none"
-                        transparent={true}
-                        visible={this.state.timeSheetModalVisible}
-                        onRequestClose={() => {
-                            Alert.alert("Modal has been closed.");
-                        }}
-                    >
-                        <View style={styles.centeredView}>
-                            <View style={styles.modalView}>
-                                <View style={{ alignItems: 'center' }}>
-                                    <Text style={{
-                                        color: '#6cab3c',
-                                        fontSize: 20,
-                                        fontWeight: 'bold',
-                                    }}>TimeSheet History</Text>
-                                </View>
-                                <View style={styles.tableSectionStyle}>
-                                    <Table borderStyle={{ borderWidth: 2, borderColor: '#c8e1ff' }} style={{}}>
-                                        <Row data={state.tableHead} style={styles.head} textStyle={styles.text} />
-                                        {
-                                            state.tableData.map((rowData, index) => (
-                                                <TableWrapper key={index} style={styles.row}>
-                                                    {
-                                                        rowData.map((cellData, cellIndex) => (
-                                                            <Cell key={cellIndex} data={cellIndex === 3 ? element(cellData, index) : cellData} textStyle={styles.text} />
-                                                        ))
-                                                    }
-                                                </TableWrapper>
-                                            ))
-                                        }
-                                    </Table>
-                                </View>
-                                <View style={[styles.contactSectionStyle, { justifyContent: 'flex-end', marginBottom: 10 }]}>
-                                    <TouchableOpacity
-                                        style={styles.closebuttonStyle}
-                                        activeOpacity={0.5}
-                                        onPress={() => {
-                                            this.setState({ timeSheetModalVisible: false });
-                                        }}
-                                    >
-                                        <Text style={styles.buttonTextStyle}>Close</Text>
-                                    </TouchableOpacity>
+                <View style={{
+                    backgroundColor: 'white', paddingVertical: 20,
+                    paddingHorizontal: 15,
+                    marginBottom: 40,
+                    width: '100%',
+                    borderTopColor: '#6cab3c',
+                    borderTopWidth: 5,
+                    borderRadius: 4,
+                    borderColor: '#C3C4C6',
+                    borderWidth: 1
+                }}>
+                    <Loader loading={this.state.loading} />
+                    <View style={styles.centeredView}>
+                        <Modal
+                            animationType="none"
+                            transparent={true}
+                            visible={this.state.timeSheetModalVisible}
+                            onRequestClose={() => {
+                                Alert.alert("Modal has been closed.");
+                            }}
+                        >
+                            <View style={styles.centeredView}>
+                                <View style={styles.modalView}>
+                                    <View style={{ alignItems: 'center' }}>
+                                        <Text style={{
+                                            color: '#6cab3c',
+                                            fontSize: 20,
+                                            fontWeight: 'bold',
+                                        }}>TimeSheet History</Text>
+                                    </View>
+                                    <View style={styles.tableSectionStyle}>
+                                        <Table borderStyle={{ borderWidth: 2, borderColor: '#c8e1ff' }} style={{}}>
+                                            <Row data={state.tableHead} style={styles.head} textStyle={styles.text} />
+                                            {
+                                                state.tableData.map((rowData, index) => (
+                                                    <TableWrapper key={index} style={styles.row}>
+                                                        {
+                                                            rowData.map((cellData, cellIndex) => (
+                                                                <Cell key={cellIndex} data={cellIndex === 3 ? element(cellData, index) : cellData} textStyle={styles.text} />
+                                                            ))
+                                                        }
+                                                    </TableWrapper>
+                                                ))
+                                            }
+                                        </Table>
+                                    </View>
+                                    <View style={[styles.contactSectionStyle, { justifyContent: 'flex-end', marginBottom: 10 }]}>
+                                        <TouchableOpacity
+                                            style={styles.closebuttonStyle}
+                                            activeOpacity={0.5}
+                                            onPress={() => {
+                                                this.setState({ timeSheetModalVisible: false });
+                                            }}
+                                        >
+                                            <Text style={styles.buttonTextStyle}>Close</Text>
+                                        </TouchableOpacity>
+                                    </View>
                                 </View>
                             </View>
-                        </View>
-                    </Modal>
-                </View>
-                <View style={styles.titleSectionStyle}>
-                    <AntDesign name="clockcircleo" size={20} color="#6cab3c" />
-                    <Text style={{ fontSize: 17, fontWeight: '500', marginLeft: 5 }}>
-                        Total Hours
+                        </Modal>
+                    </View>
+                    <View style={styles.titleSectionStyle}>
+                        <AntDesign name="clockcircleo" size={20} color="#6cab3c" />
+                        <Text style={{ fontSize: 17, fontWeight: '500', marginLeft: 5 }}>
+                            Total Hours
                     </Text>
-                </View>
-                <View style={[styles.totalSectionStyle, styles.shadowStyle,]}>
-                    <TouchableOpacity
+                    </View>
+                    <View style={[styles.totalSectionStyle, styles.shadowStyle,]}>
+                        <TouchableOpacity
 
-                        activeOpacity={0.5}
-                        onPress={() => this.props.navigation.navigate('ViewTimesheet')}
-                    >
-                        <View style={{ flex: 1, flexDirection: 'column' }}>
-                            <Text style={[styles.titleStyle, { color: 'white', fontSize: 16 }]}>Day Total</Text>
-                            <Text style={{ color: 'white', paddingTop: 5 }}>
-                                3h 09m
+                            activeOpacity={0.5}
+                            onPress={() => this.props.navigation.navigate('ViewTimesheet')}
+                        >
+                            <View style={{ flex: 1, flexDirection: 'column' }}>
+                                <Text style={[styles.titleStyle, { color: 'white', fontSize: 16 }]}>Day Total</Text>
+                                <Text style={{ color: 'white', paddingTop: 5 }}>
+                                    3h 09m
                         </Text>
-                            {/* <View style={{ flexDirection: 'row', position: 'absolute', right: 0, alignItems: 'center', top: 8 }}>
+                                {/* <View style={{ flexDirection: 'row', position: 'absolute', right: 0, alignItems: 'center', top: 8 }}>
                                 <Text style={{ fontSize: 20, color: 'white' }}> 00 m 21</Text>
                             </View> */}
-                        </View>
-                    </TouchableOpacity>
-                </View>
-                <View style={styles.titleSectionStyle}>
-                    <Text style={styles.blackTitleTextStyle}>
-                        Date
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={styles.titleSectionStyle}>
+                        <Text style={styles.blackTitleTextStyle}>
+                            Date
                     </Text>
-                </View>
-                <View style={styles.contactSectionStyle}>
-                    <DatePicker
-                        style={{ width: '100%', backgroundColor: '#FFFFFF' }}
-                        date={this.state.today}
-                        mode="date"
-                        placeholder="Date"
-                        format="MM/DD/YYYY"
-                        confirmBtnText="Confirm"
-                        cancelBtnText="Cancel"
-                        customStyles={{
-                            dateIcon: {
-                                position: 'absolute',
-                                right: 0,
-                                top: 4,
-                            },
-                            dateInput: {
-                                borderColor: '#dfdfdf',
-                                borderRadius: 5
-                            }
-                        }}
-                        onDateChange={(date) => { this.setState({ today: date }) }}
-                    />
-                </View>
-                <View style={styles.titleSectionStyle}>
-                    <Text style={styles.blackTitleTextStyle}>
-                        Jobs
+                    </View>
+                    <View style={styles.contactSectionStyle}>
+                        <DatePicker
+                            style={{ width: '100%', backgroundColor: '#FFFFFF' }}
+                            date={this.state.today}
+                            mode="date"
+                            placeholder="Date"
+                            format="MM/DD/YYYY"
+                            confirmBtnText="Confirm"
+                            cancelBtnText="Cancel"
+                            customStyles={{
+                                dateIcon: {
+                                    position: 'absolute',
+                                    right: 0,
+                                    top: 4,
+                                },
+                                dateInput: {
+                                    borderColor: '#dfdfdf',
+                                    borderRadius: 5
+                                }
+                            }}
+                            onDateChange={(date) => { this.setState({ today: date }) }}
+                        />
+                    </View>
+                    <View style={styles.titleSectionStyle}>
+                        <Text style={styles.blackTitleTextStyle}>
+                            Jobs
                     </Text>
-                </View>
-                <View style={styles.contactSectionStyle}>
-                    <RNPickerSelect
-                        onValueChange={(value) => console.log(value)}
-                        items={[
-                            { label: 'Football', value: 'football' },
-                            { label: 'Baseball', value: 'baseball' },
-                            { label: 'Hockey', value: 'hockey' },
-                        ]}
-                        Icon={() => {
-                            return <Ionicons name="ios-arrow-down" size={15} />
-                        }}
-                        placeholder={{ label: 'Select Job', value: '' }}
-                        style={{
-                            ...pickerSelectStyles
-                        }}
-                    />
-                </View>
-                <View style={styles.titleSectionStyle}>
-                    <Text style={styles.blackTitleTextStyle}>
-                        Activity
+                    </View>
+                    <View style={styles.contactSectionStyle}>
+                        <RNPickerSelect
+                            onValueChange={(value) => console.log(value)}
+                            items={[
+                                { label: 'Football', value: 'football' },
+                                { label: 'Baseball', value: 'baseball' },
+                                { label: 'Hockey', value: 'hockey' },
+                            ]}
+                            Icon={() => {
+                                return <Ionicons name="ios-arrow-down" size={15} />
+                            }}
+                            placeholder={{ label: 'Select Job', value: '' }}
+                            style={{
+                                ...pickerSelectStyles
+                            }}
+                        />
+                    </View>
+                    <View style={styles.titleSectionStyle}>
+                        <Text style={styles.blackTitleTextStyle}>
+                            Activity
                     </Text>
-                </View>
-                <View style={styles.contactSectionStyle}>
-                    <RNPickerSelect
-                        onValueChange={(value) => console.log(value)}
-                        items={[
-                            { label: 'Football', value: 'football' },
-                            { label: 'Baseball', value: 'baseball' },
-                            { label: 'Hockey', value: 'hockey' },
-                        ]}
-                        Icon={() => {
-                            return <Ionicons name="ios-arrow-down" size={15} />
-                        }}
-                        placeholder={{ label: 'Select Activity', value: '' }}
-                        style={{
-                            ...pickerSelectStyles
-                        }}
-                    />
-                </View>
+                    </View>
+                    <View style={styles.contactSectionStyle}>
+                        <RNPickerSelect
+                            onValueChange={(value) => console.log(value)}
+                            items={[
+                                { label: 'Football', value: 'football' },
+                                { label: 'Baseball', value: 'baseball' },
+                                { label: 'Hockey', value: 'hockey' },
+                            ]}
+                            Icon={() => {
+                                return <Ionicons name="ios-arrow-down" size={15} />
+                            }}
+                            placeholder={{ label: 'Select Activity', value: '' }}
+                            style={{
+                                ...pickerSelectStyles
+                            }}
+                        />
+                    </View>
 
-                <View style={styles.titleSectionStyle}>
-                    <Text style={styles.blackTitleTextStyle}>
-                        Start Time (24 hr format)
+                    <View style={styles.titleSectionStyle}>
+                        <Text style={styles.blackTitleTextStyle}>
+                            Start Time (24 hr format)
                     </Text>
-                </View>
-                <View style={styles.contactSectionStyle}>
-                    <DatePicker
-                        style={{ width: '100%', backgroundColor: '#FFFFFF', flex: 1 }}
-                        date={this.state.startTime}
-                        mode="time"
-                        placeholder="startTime"
-                        // format="MM/DD/YYYY"
-                        confirmBtnText="Confirm"
-                        cancelBtnText="Cancel"
-                        customStyles={{
-                            dateIcon: {
-                                position: 'absolute',
-                                height: 0,
-                                width: 0,
-                                marginRight: -30
-                            },
-                            dateInput: {
-                                borderColor: '#dfdfdf',
-                                borderRadius: 5
-                            }
-                        }}
-                        onDateChange={(date) => { this.setState({ startTime: date }) }}
-                    />
-                </View>
-                <View style={styles.titleSectionStyle}>
-                    <Text style={styles.blackTitleTextStyle}>
-                        End Time (24 hr format)
+                    </View>
+                    <View style={styles.contactSectionStyle}>
+                        <DatePicker
+                            style={{ width: '100%', backgroundColor: '#FFFFFF', flex: 1 }}
+                            date={this.state.startTime}
+                            mode="time"
+                            placeholder="startTime"
+                            // format="MM/DD/YYYY"
+                            confirmBtnText="Confirm"
+                            cancelBtnText="Cancel"
+                            customStyles={{
+                                dateIcon: {
+                                    position: 'absolute',
+                                    height: 0,
+                                    width: 0,
+                                    marginRight: -30
+                                },
+                                dateInput: {
+                                    borderColor: '#dfdfdf',
+                                    borderRadius: 5
+                                }
+                            }}
+                            onDateChange={(date) => { this.setState({ startTime: date }) }}
+                        />
+                    </View>
+                    <View style={styles.titleSectionStyle}>
+                        <Text style={styles.blackTitleTextStyle}>
+                            End Time (24 hr format)
                     </Text>
-                </View>
-                <View style={styles.contactSectionStyle}>
-                    <DatePicker
-                        style={{ width: '100%', backgroundColor: '#FFFFFF', flex: 1 }}
-                        date={this.state.endTime}
-                        mode="time"
-                        placeholder="End Time"
-                        // format="MM/DD/YYYY"
-                        confirmBtnText="Confirm"
-                        cancelBtnText="Cancel"
-                        customStyles={{
-                            dateIcon: {
-                                position: 'absolute',
-                                height: 0,
-                                width: 0,
-                                marginRight: -30
-                            },
-                            dateInput: {
-                                borderColor: '#dfdfdf',
-                                borderRadius: 5
-                            }
-                        }}
-                        onDateChange={(date) => { this.setState({ endTime: date }) }}
-                    />
+                    </View>
+                    <View style={styles.contactSectionStyle}>
+                        <DatePicker
+                            style={{ width: '100%', backgroundColor: '#FFFFFF', flex: 1 }}
+                            date={this.state.endTime}
+                            mode="time"
+                            placeholder="End Time"
+                            // format="MM/DD/YYYY"
+                            confirmBtnText="Confirm"
+                            cancelBtnText="Cancel"
+                            customStyles={{
+                                dateIcon: {
+                                    position: 'absolute',
+                                    height: 0,
+                                    width: 0,
+                                    marginRight: -30
+                                },
+                                dateInput: {
+                                    borderColor: '#dfdfdf',
+                                    borderRadius: 5
+                                }
+                            }}
+                            onDateChange={(date) => { this.setState({ endTime: date }) }}
+                        />
 
-                </View>
-                <View style={styles.titleSectionStyle}>
-                    <Text style={styles.blackTitleTextStyle}>
-                        Comments
+                    </View>
+                    <View style={styles.titleSectionStyle}>
+                        <Text style={styles.blackTitleTextStyle}>
+                            Comments
                     </Text>
-                </View>
-                <View style={styles.sectionTextareaStyle}>
-                    <TextInput
-                        value={this.state.comments}
-                        onChange={(text) => this.setState({ comments: text })}
-                        style={styles.textareaStyle}
-                        multiline={true}
-                        placeholder="Write comments."
-                        placeholderTextColor="#a6b0bb"
-                        keyboardType="default"
-                        blurOnSubmit={false}
-                    />
-                </View>
-                <View style={styles.titleSectionStyle}>
-                    <Text style={styles.blackTitleTextStyle}>
-                        Unpaid Time (minutes)
+                    </View>
+                    <View style={styles.sectionTextareaStyle}>
+                        <TextInput
+                            value={this.state.comments}
+                            onChange={(text) => this.setState({ comments: text })}
+                            style={styles.textareaStyle}
+                            multiline={true}
+                            placeholder="Write comments."
+                            placeholderTextColor="#a6b0bb"
+                            keyboardType="default"
+                            blurOnSubmit={false}
+                        />
+                    </View>
+                    <View style={styles.titleSectionStyle}>
+                        <Text style={styles.blackTitleTextStyle}>
+                            Unpaid Time (minutes)
                     </Text>
-                </View>
-                <View style={[styles.contactSectionStyle]}>
-                    <TextInput
-                        value={this.state.unpaidTime}
-                        onChangeText={(text) => this.setState({ unpaidTime: text })}
-                        style={styles.inputStyle}
-                        placeholder="Unpaid Time in Minutes"
-                        placeholderTextColor="#a6b0bb"
-                        keyboardType="default"
-                        onSubmitEditing={Keyboard.dismiss}
-                        blurOnSubmit={false}
-                    />
-                </View>
-                <View style={styles.titleSectionStyle}>
-                    <Text style={styles.blackTitleTextStyle}>
-                        Total Hours
+                    </View>
+                    <View style={[styles.contactSectionStyle]}>
+                        <TextInput
+                            value={this.state.unpaidTime}
+                            onChangeText={(text) => this.setState({ unpaidTime: text })}
+                            style={styles.inputStyle}
+                            placeholder="Unpaid Time in Minutes"
+                            placeholderTextColor="#a6b0bb"
+                            keyboardType="default"
+                            onSubmitEditing={Keyboard.dismiss}
+                            blurOnSubmit={false}
+                        />
+                    </View>
+                    <View style={styles.titleSectionStyle}>
+                        <Text style={styles.blackTitleTextStyle}>
+                            Total Hours
                     </Text>
-                </View>
-                <View style={[styles.contactSectionStyle]}>
-                    <TextInput
-                        value={this.state.totalHour}
-                        onChangeText={(text) => this.setState({ totalHour: text })}
-                        style={styles.inputStyle}
-                        placeholder="Total Hours"
-                        placeholderTextColor="#a6b0bb"
-                        keyboardType="default"
-                        onSubmitEditing={Keyboard.dismiss}
-                        blurOnSubmit={false}
-                    />
-                </View>
-                <View style={styles.titleSectionStyle}>
-                    <Text style={styles.blackTitleTextStyle}>
-                        Units
+                    </View>
+                    <View style={[styles.contactSectionStyle]}>
+                        <TextInput
+                            value={this.state.totalHour}
+                            onChangeText={(text) => this.setState({ totalHour: text })}
+                            style={styles.inputStyle}
+                            placeholder="Total Hours"
+                            placeholderTextColor="#a6b0bb"
+                            keyboardType="default"
+                            onSubmitEditing={Keyboard.dismiss}
+                            blurOnSubmit={false}
+                        />
+                    </View>
+                    <View style={styles.titleSectionStyle}>
+                        <Text style={styles.blackTitleTextStyle}>
+                            Units
                     </Text>
-                </View>
-                <View style={[styles.contactSectionStyle]}>
-                    <TextInput
-                        value={this.state.unit}
-                        onChangeText={(text) => this.setState({ unit: text })}
-                        style={styles.inputStyle}
-                        placeholder="Units"
-                        placeholderTextColor="#a6b0bb"
-                        keyboardType="default"
-                        onSubmitEditing={Keyboard.dismiss}
-                        blurOnSubmit={false}
-                    />
-                </View>
-                <View style={styles.titleSectionStyle}>
+                    </View>
+                    <View style={[styles.contactSectionStyle]}>
+                        <TextInput
+                            value={this.state.unit}
+                            onChangeText={(text) => this.setState({ unit: text })}
+                            style={styles.inputStyle}
+                            placeholder="Units"
+                            placeholderTextColor="#a6b0bb"
+                            keyboardType="default"
+                            onSubmitEditing={Keyboard.dismiss}
+                            blurOnSubmit={false}
+                        />
+                    </View>
+                    <View style={styles.titleSectionStyle}>
 
-                </View>
-                <View style={styles.contactSectionStyle}>
-                    <TouchableOpacity
-                        style={styles.schedulebuttonStyle}
-                        activeOpacity={0.5}
-                        onPress={() => this.props.navigation.navigate("MyProfile")}>
-                        <Text style={styles.buttonTextStyle}>Update</Text>
-                    </TouchableOpacity>
-                </View>
-                <View style={styles.titleSectionStyle}>
-                    <Text style={styles.blackTitleTextStyle}>
-                    </Text>
+                    </View>
+                    <View style={styles.contactSectionStyle}>
+                        <TouchableOpacity
+                            style={styles.schedulebuttonStyle}
+                            activeOpacity={0.5}
+                            onPress={() => this.props.navigation.navigate("MyProfile")}>
+                            <Text style={styles.buttonTextStyle}>Update</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
             </ScrollView>
 
