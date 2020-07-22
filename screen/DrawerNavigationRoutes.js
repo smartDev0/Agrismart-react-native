@@ -16,7 +16,8 @@ import MyProfile from './drawerScreens/myProfile/MyProfile';
 import UpdateProfile from './drawerScreens/myProfile/UpdateProfile';
 import Notifications from './drawerScreens/notifications/Notifications'
 import Leave from './drawerScreens/leave/Leave';
-import EditTimesheetScreen from './drawerScreens/home/EditTimesheetScreen'
+import EditTimesheetScreen from './drawerScreens/home/EditTimesheetScreen';
+import ViewTimesheetScreen from './drawerScreens/home/ViewTimesheetScreen';
 import MyHours from './drawerScreens/myHours/myHours';
 import Rosters from './drawerScreens/rosters/Rosters';
 const d = Dimensions.get("window");
@@ -73,6 +74,31 @@ const Timesheet_StackNavigator = createStackNavigator({
                 <View style={styles.iconContainer}>
                     <AntDesign name="arrowleft" size={25} color="#FFFFFF" onPress={() => navigation.navigate('Timesheet')} />
                     <Text style={styles.titleStyle}>Edit Timesheet</Text>
+                </View>,
+            headerRight: () => HeaderRight(navigation),
+            headerStyle: {
+                backgroundColor: '#6cab3c',
+                height: Platform.OS === "ios" && isX ? 120 : 100,
+                elevation: 0,
+                shadowOpacity: 0,
+                borderBottomWidth: 0
+            },
+            headerTintColor: '#fff',
+            cardStyle: { backgroundColor: Platform.OS === "ios" ? '#0071bc' : '#f4f5f7' }
+        }),
+    },
+});
+const Timesheet_View_StackNavigator = createStackNavigator({
+    ViewTimesheet: {
+        screen: ViewTimesheetScreen,
+        navigationOptions: ({ navigation }) => ({
+            headerTitle: () => <View style={{ alignItems: 'center' }}>
+                <Text style={styles.logoStyle}>AgriSmart</Text>
+            </View>,
+            headerLeft: () =>
+                <View style={styles.iconContainer}>
+                    <AntDesign name="arrowleft" size={25} color="#FFFFFF" onPress={() => navigation.navigate('Timesheet')} />
+                    <Text style={styles.titleStyle}>Timesheet History</Text>
                 </View>,
             headerRight: () => HeaderRight(navigation),
             headerStyle: {
@@ -244,6 +270,9 @@ const DrawerNavigatorRoutes = createDrawerNavigator(
         },
         EditTimesheet: {
             screen: Timesheet_StackNavigator
+        },
+        ViewTimesheet: {
+            screen: Timesheet_View_StackNavigator
         },
         MyProfile: {
             screen: MyprofileActivity_StackNavigator,

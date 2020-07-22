@@ -20,6 +20,7 @@ import Loader from '../../components/loader';
 import DatePicker from 'react-native-datepicker';
 import RNPickerSelect from 'react-native-picker-select';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 class EditTimesheetScreen extends React.Component {
     constructor(props) {
         super(props);
@@ -135,13 +136,27 @@ class EditTimesheetScreen extends React.Component {
                         </View>
                     </Modal>
                 </View>
-                <View style={styles.contactSectionStyle}>
+                <View style={styles.titleSectionStyle}>
+                    <AntDesign name="clockcircleo" size={20} color="#6cab3c" />
+                    <Text style={{ fontSize: 17, fontWeight: '500', marginLeft: 5 }}>
+                        Total Hours
+                    </Text>
+                </View>
+                <View style={[styles.totalSectionStyle, styles.shadowStyle,]}>
                     <TouchableOpacity
-                        style={styles.viewbuttonStyle}
+
                         activeOpacity={0.5}
-                        onPress={() => this.showTimesheetModal()}
+                        onPress={() => this.props.navigation.navigate('ViewTimesheet')}
                     >
-                        <Text style={styles.buttonTextStyle}>View Timesheet History</Text>
+                        <View style={{ flex: 1, flexDirection: 'column' }}>
+                            <Text style={[styles.titleStyle, { color: 'white', fontSize: 16 }]}>Day Total</Text>
+                            <Text style={{ color: 'white', paddingTop: 5 }}>
+                                3h 09m
+                        </Text>
+                            {/* <View style={{ flexDirection: 'row', position: 'absolute', right: 0, alignItems: 'center', top: 8 }}>
+                                <Text style={{ fontSize: 20, color: 'white' }}> 00 m 21</Text>
+                            </View> */}
+                        </View>
                     </TouchableOpacity>
                 </View>
                 <View style={styles.titleSectionStyle}>
@@ -165,7 +180,8 @@ class EditTimesheetScreen extends React.Component {
                                 top: 4,
                             },
                             dateInput: {
-                                borderColor: '#dfdfdf'
+                                borderColor: '#dfdfdf',
+                                borderRadius: 5
                             }
                         }}
                         onDateChange={(date) => { this.setState({ today: date }) }}
@@ -215,23 +231,7 @@ class EditTimesheetScreen extends React.Component {
                         }}
                     />
                 </View>
-                <View style={styles.titleSectionStyle}>
-                    <Text style={styles.blackTitleTextStyle}>
-                        Comments
-                    </Text>
-                </View>
-                <View style={styles.sectionTextareaStyle}>
-                    <TextInput
-                        value={this.state.comments}
-                        onChange={(text) => this.setState({ comments: text })}
-                        style={styles.textareaStyle}
-                        multiline={true}
-                        placeholder="Write comments."
-                        placeholderTextColor="#a6b0bb"
-                        keyboardType="default"
-                        blurOnSubmit={false}
-                    />
-                </View>
+
                 <View style={styles.titleSectionStyle}>
                     <Text style={styles.blackTitleTextStyle}>
                         Start Time (24 hr format)
@@ -249,11 +249,13 @@ class EditTimesheetScreen extends React.Component {
                         customStyles={{
                             dateIcon: {
                                 position: 'absolute',
-                                right: 0,
-                                top: 4,
+                                height: 0,
+                                width: 0,
+                                marginRight: -30
                             },
                             dateInput: {
-                                borderColor: '#dfdfdf'
+                                borderColor: '#dfdfdf',
+                                borderRadius: 5
                             }
                         }}
                         onDateChange={(date) => { this.setState({ startTime: date }) }}
@@ -261,7 +263,7 @@ class EditTimesheetScreen extends React.Component {
                 </View>
                 <View style={styles.titleSectionStyle}>
                     <Text style={styles.blackTitleTextStyle}>
-                        end Time (24 hr format)
+                        End Time (24 hr format)
                     </Text>
                 </View>
                 <View style={styles.contactSectionStyle}>
@@ -269,23 +271,42 @@ class EditTimesheetScreen extends React.Component {
                         style={{ width: '100%', backgroundColor: '#FFFFFF', flex: 1 }}
                         date={this.state.endTime}
                         mode="time"
-                        placeholder="endTime"
+                        placeholder="End Time"
                         // format="MM/DD/YYYY"
                         confirmBtnText="Confirm"
                         cancelBtnText="Cancel"
                         customStyles={{
                             dateIcon: {
                                 position: 'absolute',
-                                right: 0,
-                                top: 4,
+                                height: 0,
+                                width: 0,
+                                marginRight: -30
                             },
                             dateInput: {
-                                borderColor: '#dfdfdf'
+                                borderColor: '#dfdfdf',
+                                borderRadius: 5
                             }
                         }}
                         onDateChange={(date) => { this.setState({ endTime: date }) }}
                     />
 
+                </View>
+                <View style={styles.titleSectionStyle}>
+                    <Text style={styles.blackTitleTextStyle}>
+                        Comments
+                    </Text>
+                </View>
+                <View style={styles.sectionTextareaStyle}>
+                    <TextInput
+                        value={this.state.comments}
+                        onChange={(text) => this.setState({ comments: text })}
+                        style={styles.textareaStyle}
+                        multiline={true}
+                        placeholder="Write comments."
+                        placeholderTextColor="#a6b0bb"
+                        keyboardType="default"
+                        blurOnSubmit={false}
+                    />
                 </View>
                 <View style={styles.titleSectionStyle}>
                     <Text style={styles.blackTitleTextStyle}>
@@ -361,19 +382,21 @@ class EditTimesheetScreen extends React.Component {
 }
 export default EditTimesheetScreen;
 const pickerSelectStyles = StyleSheet.create({
-    viewContainer: {
-        flex: 1,
-        borderWidth: 1, borderColor: '#dfdfdf',
-        backgroundColor: '#FFFFFF',
-    },
+
     headlessAndroidContainer: {
         backgroundColor: '#FFFFFF',
-        flex: 1
+        flex: 1,
     },
-    iconContainer: { top: 12, right: 10 },
-    inputAndroid: { height: 40, flex: 1, paddingLeft: 10, borderWidth: 1, borderColor: '#dfdfdf', backgroundColor: '#FFFFFF' },
-    inputIOS: { height: 40, paddingLeft: 10, borderWidth: 1, borderColor: '#dfdfdf', backgroundColor: '#FFFFFF' },
-
+    iconContainer: { top: 12, right: 10, },
+    inputAndroid: { height: 40, flex: 1, },
+    inputIOS: { height: 40, paddingLeft: 10, borderWidth: 1, borderColor: '#dfdfdf', backgroundColor: '#FFFFFF', borderRadius: 5, },
+    viewContainer: {
+        flex: 1,
+        borderWidth: 1,
+        borderColor: '#dfdfdf',
+        backgroundColor: '#FFFFFF',
+        borderRadius: 5, height: 40,
+    },
 });
 const styles = StyleSheet.create({
     tableSectionStyle: { paddingTop: 20, paddingBottom: 20 },
@@ -401,13 +424,20 @@ const styles = StyleSheet.create({
         margin: 5,
         justifyContent: 'center'
     },
+    totalSectionStyle: {
+        backgroundColor: '#6cab3c',
+        padding: 10,
+        marginVertical: 7,
+        borderRadius: 7,
+        width: '100%'
+    },
     viewbuttonStyle: {
-        backgroundColor: '#fb9a2e',
+        backgroundColor: '#6cab3c',
         color: '#333',
         height: 45,
         width: '100%',
-        borderRadius: 3,
-        alignItems: 'center',
+
+        alignItems: 'center', borderRadius: 5,
     },
     closebuttonStyle: {
         backgroundColor: 'grey',
@@ -418,7 +448,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     timerStartButtonStyle: {
-        backgroundColor: '#4db8ff',
+        backgroundColor: '#6cab3c',
         color: '#333',
         height: 40,
         width: '100%',
@@ -426,7 +456,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     timerStopButtonStyle: {
-        backgroundColor: '#ff471a',
+        backgroundColor: 'grey',
         color: '#333',
         height: 40,
         width: '100%',
@@ -439,6 +469,16 @@ const styles = StyleSheet.create({
         marginVertical: 5,
         alignItems: 'center',
     },
+    shadowStyle: {
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 1,
+            height: 2,
+        },
+        shadowOpacity: 0.1,
+        shadowRadius: 3.84,
+        elevation: 5,
+    },
     sectionTextareaStyle: {
         backgroundColor: '#FFFFFF',
         padding: 10,
@@ -446,17 +486,20 @@ const styles = StyleSheet.create({
         borderRadius: 0,
         width: '100%',
         borderWidth: 1,
-        borderColor: '#dfdfdf'
+        borderColor: '#dfdfdf',
+        borderRadius: 5
     },
     textareaStyle: {
         height: 120,
         textAlignVertical: 'top',
+        borderRadius: 10
     },
     contactSectionStyle: {
         flexDirection: 'row',
         height: 40,
         // marginVertical: 10,
         alignItems: 'center',
+        borderRadius: 5
     },
     schedulebuttonStyle: {
         backgroundColor: '#6cab3c',
@@ -492,7 +535,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 15,
         borderWidth: 1,
         borderColor: '#dfdfdf',
-        // borderRadius: 8
+        borderRadius: 5
     },
     buttonTextStyle: {
         color: '#FFFFFF',

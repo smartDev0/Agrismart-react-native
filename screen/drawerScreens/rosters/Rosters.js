@@ -7,6 +7,7 @@ import Loader from '../../components/loader';
 import RNPickerSelect from 'react-native-picker-select';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 class Rosters extends React.Component {
     constructor(props) {
@@ -28,6 +29,14 @@ class Rosters extends React.Component {
     }
     toggleChange = () => {
         this.setState({ isEnabled: !this.state.isEnabled })
+    }
+    getRandomColor = () => {
+        var letters = '0123456789ABCDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
     }
     addDays = () => {
         var days = 15; // Days you want to subtract
@@ -61,9 +70,9 @@ class Rosters extends React.Component {
                                 return <Ionicons name="ios-arrow-down" size={15} />
                             }}
                             style={{
-                                inputAndroid: { height: 40, paddingLeft: 10, borderWidth: 1, borderColor: '#dfdfdf', backgroundColor: '#FFFFFF' },
-                                inputIOS: { height: 40, paddingLeft: 10, borderWidth: 1, borderColor: '#dfdfdf', backgroundColor: '#FFFFFF' },
-                                iconContainer: { top: 12, right: 10 }
+                                inputAndroid: {height: 40, paddingLeft: 10, borderWidth: 1, borderColor: '#dfdfdf', backgroundColor: '#FFFFFF',borderRadius: 5 },
+                                inputIOS: {height: 40, paddingLeft: 10, borderWidth: 1, borderColor: '#dfdfdf', backgroundColor: '#FFFFFF' },
+                                iconContainer: {top: 12, right: 10 }
                             }}
                             placeholder={{ label: 'Type', value: '' }}
                             onValueChange={(value) => console.log(value)}
@@ -116,15 +125,24 @@ class Rosters extends React.Component {
                         </View>
                     </View>
                 </View>
-                {this.state.days.map((data, i) =>
-                    <View style={styles.daySectionStyle} key={i}>
-                        <View>
-                            <Text style={{ textAlign: 'center' }}>
-                                {data}
-                            </Text>
+                <View style={styles.titleSectionStyle}>
+                    <MaterialCommunityIcons name="flask-outline" size={20} color="#6cab3c" />
+                    <Text style={{ fontSize: 17, fontWeight: '500', marginLeft: 5 }}>
+                        Rosters
+                    </Text>
+                </View>
 
+                {
+                    this.state.days.map((data, i) =>
+                        <View style={[styles.sectionStyle, styles.shadowStyle, { borderLeftWidth: 4, borderColor: this.getRandomColor() }]}>
+                            <View style={{ flex: 1, flexDirection: 'column' }}>
+                                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                    <Icon name="calendar-o" size={20} color="#6cab3c" />
+                                    <Text style={{ fontSize: 16 }}> {data}</Text>
+                                </View>
+                            </View>
                         </View>
-                    </View>)
+                    )
                 }
                 <View style={{ padding: 10 }}></View>
             </ScrollView>
@@ -136,7 +154,6 @@ export default Rosters;
 
 const styles = StyleSheet.create({
     mainSectionStyle: {
-        borderTopRightRadius: 50,
         backgroundColor: '#f4f5f7',
         paddingVertical: 20,
         paddingHorizontal: 15,
@@ -156,5 +173,37 @@ const styles = StyleSheet.create({
         borderBottomColor: 'grey',
         borderBottomWidth: 1,
         width: '100%',
-    }
+    },
+    sectionStyle: {
+        backgroundColor: '#FFFFFF',
+        padding: 10,
+        marginVertical: 7,
+        borderRadius: 7,
+        width: '100%'
+    },
+    titleStyle: {
+        marginRight: 80,
+        fontSize: 17,
+    },
+    buttonTextStyle: {
+        color: '#FFFFFF',
+        paddingVertical: 7,
+        fontSize: 16,
+    },
+    titleSectionStyle: {
+        flexDirection: 'row',
+        width: '100%',
+        marginVertical: 10,
+        alignItems: 'center',
+    },
+    shadowStyle: {
+        shadowColor: "#000",
+        shadowOffset: {
+                            width: 1,
+            height: 2,
+        },
+        shadowOpacity: 0.1,
+        shadowRadius: 3.84,
+        elevation: 5,
+    },
 });

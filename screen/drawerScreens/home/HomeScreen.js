@@ -14,12 +14,13 @@ import {
     TouchableHighlight
 } from 'react-native';
 import { Table, TableWrapper, Row, Rows, Cell, Col } from 'react-native-table-component';
-
+import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Loader from '../../components/loader';
 import DatePicker from 'react-native-datepicker';
 import RNPickerSelect from 'react-native-picker-select';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 class HomeScreen extends React.Component {
     constructor(props) {
         super(props);
@@ -84,6 +85,7 @@ class HomeScreen extends React.Component {
 
         );
         return (
+
             <ScrollView style={styles.mainSectionStyle} bounces='false' contentContainerStyle={{ alignItems: 'center' }}>
                 <Loader loading={this.state.loading} />
                 <View style={styles.centeredView}>
@@ -258,13 +260,28 @@ class HomeScreen extends React.Component {
                         </View>
                     </Modal>
                 </View>
-                <View style={styles.contactSectionStyle}>
+                <View style={styles.titleSectionStyle}>
+                    <AntDesign name="clockcircleo" size={20} color="#6cab3c" />
+                    <Text style={{ fontSize: 17, fontWeight: '500', marginLeft: 5 }}>
+                        Total Hours
+                    </Text>
+                </View>
+
+                <View style={[styles.totalSectionStyle, styles.shadowStyle,]}>
                     <TouchableOpacity
-                        style={styles.viewbuttonStyle}
+
                         activeOpacity={0.5}
-                        onPress={() => this.showTimesheetModal()}
+                        onPress={() => this.props.navigation.navigate('ViewTimesheet')}
                     >
-                        <Text style={styles.buttonTextStyle}>View the added entries</Text>
+                        <View style={{ flex: 1, flexDirection: 'column' }}>
+                            <Text style={[styles.titleStyle, { color: 'white', fontSize: 16 }]}>Day Total</Text>
+                            <Text style={{ color: 'white', paddingTop: 5 }}>
+                                3h 09m
+                        </Text>
+                            {/* <View style={{ flexDirection: 'row', position: 'absolute', right: 0, alignItems: 'center', top: 8 }}>
+                                <Text style={{ fontSize: 20, color: 'white' }}> 00 m 21</Text>
+                            </View> */}
+                        </View>
                     </TouchableOpacity>
                 </View>
                 <View style={styles.titleSectionStyle}>
@@ -288,7 +305,8 @@ class HomeScreen extends React.Component {
                                 top: 4,
                             },
                             dateInput: {
-                                borderColor: '#dfdfdf'
+                                borderColor: '#dfdfdf',
+                                borderRadius: 5
                             }
                         }}
                         onDateChange={(date) => { this.setState({ today: date }) }}
@@ -338,6 +356,101 @@ class HomeScreen extends React.Component {
                         }}
                     />
                 </View>
+
+
+
+                <View style={styles.titleSectionStyle}>
+                    <Text style={styles.blackTitleTextStyle}>
+                        Start Time (24 hr format)
+                    </Text>
+                </View>
+                <View style={styles.contactSectionStyle}>
+                    <View style={{ flex: 0.35 }}>
+                        <TouchableOpacity
+                            style={styles.timerStartButtonStyle}
+                            activeOpacity={0.5}
+                        // onPress={() => this.props.navigation.navigate("MyProfile")}
+                        >
+                            <Text style={styles.buttonTextStyle}>Start</Text>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={{ flex: 0.05 }}></View>
+                    <DatePicker
+                        style={{ width: '100%', backgroundColor: '#FFFFFF', flex: 0.6 }}
+                        date={this.state.startTime}
+                        mode="time"
+                        placeholder="Start Time"
+                        // format="MM/DD/YYYY"
+                        confirmBtnText="Confirm"
+                        cancelBtnText="Cancel"
+                        customStyles={{
+                            dateIcon: {
+                                position: 'absolute',
+                                height: 0,
+                                width: 0,
+                                marginRight: -30
+                            },
+                            dateInput: {
+                                borderColor: '#dfdfdf',
+                                borderRadius: 5
+                            }
+                        }}
+                        onDateChange={(date) => { this.setState({ startTime: date }) }}
+                    />
+
+
+                </View>
+                <View style={styles.titleSectionStyle}>
+                    <Text style={styles.blackTitleTextStyle}>
+                        End Time (24 hr format)
+                    </Text>
+                </View>
+                <View style={styles.contactSectionStyle}>
+                    <View style={{ flex: 0.35 }}>
+                        <TouchableOpacity
+                            style={styles.timerStopButtonStyle}
+                            activeOpacity={0.5}
+                        // onPress={() => this.props.navigation.navigate("MyProfile")}
+                        >
+                            <Text style={styles.buttonTextStyle}>Stop</Text>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={{ flex: 0.05 }}></View>
+                    <DatePicker
+                        style={{ width: '100%', backgroundColor: '#FFFFFF', flex: 0.6 }}
+                        date={this.state.endTime}
+                        mode="time"
+                        placeholder="End Time"
+                        // format="MM/DD/YYYY"
+                        confirmBtnText="Confirm"
+                        cancelBtnText="Cancel"
+                        customStyles={{
+                            dateIcon: {
+                                position: 'absolute',
+                                height: 0,
+                                width: 0,
+                                marginRight: -30
+
+                            },
+                            dateInput: {
+                                borderColor: '#dfdfdf',
+                                borderRadius: 5
+                            }
+                        }}
+                        onDateChange={(date) => { this.setState({ endTime: date }) }}
+                    />
+
+
+                </View>
+                {/* <View style={styles.contactSectionStyle}>
+                    <TouchableOpacity
+                        style={styles.viewbuttonStyle}
+                        activeOpacity={0.5}
+                        onPress={() => this.props.navigation.navigate('ViewTimesheet')}
+                    >
+                        <Text style={styles.buttonTextStyle}>View the added entries</Text>
+                    </TouchableOpacity>
+                </View> */}
                 <View style={styles.titleSectionStyle}>
                     <Text style={styles.blackTitleTextStyle}>
                         Comments
@@ -354,80 +467,6 @@ class HomeScreen extends React.Component {
                         keyboardType="default"
                         blurOnSubmit={false}
                     />
-                </View>
-                <View style={styles.titleSectionStyle}>
-                    <Text style={styles.blackTitleTextStyle}>
-                        Start Time (24 hr format)
-                    </Text>
-                </View>
-                <View style={styles.contactSectionStyle}>
-                    <DatePicker
-                        style={{ width: '100%', backgroundColor: '#FFFFFF', flex: 0.6 }}
-                        date={this.state.startTime}
-                        mode="time"
-                        placeholder="startTime"
-                        // format="MM/DD/YYYY"
-                        confirmBtnText="Confirm"
-                        cancelBtnText="Cancel"
-                        customStyles={{
-                            dateIcon: {
-                                position: 'absolute',
-                                right: 0,
-                                top: 4,
-                            },
-                            dateInput: {
-                                borderColor: '#dfdfdf'
-                            }
-                        }}
-                        onDateChange={(date) => { this.setState({ startTime: date }) }}
-                    />
-                    <View style={{ flex: 0.05 }}></View>
-                    <View style={{ flex: 0.35 }}>
-                        <TouchableOpacity
-                            style={styles.timerStartButtonStyle}
-                            activeOpacity={0.5}
-                        // onPress={() => this.props.navigation.navigate("MyProfile")}
-                        >
-                            <Text style={styles.buttonTextStyle}>Start</Text>
-                        </TouchableOpacity>
-                    </View>
-                </View>
-                <View style={styles.titleSectionStyle}>
-                    <Text style={styles.blackTitleTextStyle}>
-                        end Time (24 hr format)
-                    </Text>
-                </View>
-                <View style={styles.contactSectionStyle}>
-                    <DatePicker
-                        style={{ width: '100%', backgroundColor: '#FFFFFF', flex: 0.6 }}
-                        date={this.state.endTime}
-                        mode="time"
-                        placeholder="endTime"
-                        // format="MM/DD/YYYY"
-                        confirmBtnText="Confirm"
-                        cancelBtnText="Cancel"
-                        customStyles={{
-                            dateIcon: {
-                                position: 'absolute',
-                                right: 0,
-                                top: 4,
-                            },
-                            dateInput: {
-                                borderColor: '#dfdfdf'
-                            }
-                        }}
-                        onDateChange={(date) => { this.setState({ endTime: date }) }}
-                    />
-                    <View style={{ flex: 0.05 }}></View>
-                    <View style={{ flex: 0.35 }}>
-                        <TouchableOpacity
-                            style={styles.timerStopButtonStyle}
-                            activeOpacity={0.5}
-                        // onPress={() => this.props.navigation.navigate("MyProfile")}
-                        >
-                            <Text style={styles.buttonTextStyle}>Stop</Text>
-                        </TouchableOpacity>
-                    </View>
                 </View>
                 <View style={styles.titleSectionStyle}>
                     <Text style={styles.blackTitleTextStyle}>
@@ -503,19 +542,21 @@ class HomeScreen extends React.Component {
 }
 export default HomeScreen;
 const pickerSelectStyles = StyleSheet.create({
-    viewContainer: {
-        flex: 1,
-        borderWidth: 1, borderColor: '#dfdfdf',
-        backgroundColor: '#FFFFFF',
-    },
+
     headlessAndroidContainer: {
         backgroundColor: '#FFFFFF',
-        flex: 1
+        flex: 1,
     },
-    iconContainer: { top: 12, right: 10 },
-    inputAndroid: { height: 40, flex: 1, paddingLeft: 10, borderWidth: 1, borderColor: '#dfdfdf', backgroundColor: '#FFFFFF' },
-    inputIOS: { height: 40, paddingLeft: 10, borderWidth: 1, borderColor: '#dfdfdf', backgroundColor: '#FFFFFF' },
-
+    iconContainer: { top: 12, right: 10, },
+    inputAndroid: { height: 40, flex: 1, },
+    inputIOS: { height: 40, paddingLeft: 10, borderWidth: 1, borderColor: '#dfdfdf', backgroundColor: '#FFFFFF', borderRadius: 5, },
+    viewContainer: {
+        flex: 1,
+        borderWidth: 1,
+        borderColor: '#dfdfdf',
+        backgroundColor: '#FFFFFF',
+        borderRadius: 5, height: 40,
+    },
 });
 const styles = StyleSheet.create({
     tableSectionStyle: { paddingTop: 20, paddingBottom: 20 },
@@ -524,15 +565,23 @@ const styles = StyleSheet.create({
     wrapper: { flexDirection: 'row' },
     title: { flex: 1, backgroundColor: '#f6f8fa' },
     row: { flexDirection: 'row', backgroundColor: 'white', justifyContent: 'center', },
-    btn: { backgroundColor: 'red', borderRadius: 2, padding: 5, width: 30, marginHorizontal: 5 },
+    btn: { backgroundColor: 'red', borderRadius: 2, padding: 5, width: 30, marginHorizontal: 5, justifyContent: 'center', display: 'flex' },
     btnEdit: { backgroundColor: 'green', borderRadius: 2, padding: 5, width: 30, marginHorizontal: 5 },
     btnText: { textAlign: 'center', color: '#fff', padding: 3 },
     text: { textAlign: 'center' },
     mainSectionStyle: {
-        borderTopRightRadius: 50,
-        backgroundColor: '#f4f5f7',
+        // borderTopRightRadius: 50,
+        backgroundColor: '#f9fafb',
         paddingVertical: 20,
-        paddingHorizontal: 15
+        paddingHorizontal: 15,
+        opacity: 1
+    },
+    totalSectionStyle: {
+        backgroundColor: '#6cab3c',
+        padding: 10,
+        marginVertical: 7,
+        borderRadius: 7,
+        width: '100%'
     },
     SectionStyle: {
         flexDirection: 'row',
@@ -544,12 +593,37 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     viewbuttonStyle: {
-        backgroundColor: '#fb9a2e',
+        backgroundColor: '#6cab3c',
         color: '#333',
         height: 45,
         width: '100%',
-        borderRadius: 3,
+        borderRadius: 5,
         alignItems: 'center',
+    },
+    titleStyle: {
+        marginRight: 80,
+        fontSize: 17,
+    },
+    buttonTextStyle: {
+        color: '#FFFFFF',
+        paddingVertical: 7,
+        fontSize: 16,
+    },
+    titleSectionStyle: {
+        flexDirection: 'row',
+        width: '100%',
+        marginVertical: 10,
+        alignItems: 'center',
+    },
+    shadowStyle: {
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 1,
+            height: 2,
+        },
+        shadowOpacity: 0.1,
+        shadowRadius: 3.84,
+        elevation: 5,
     },
     closebuttonStyle: {
         backgroundColor: 'grey',
@@ -560,7 +634,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     timerStartButtonStyle: {
-        backgroundColor: '#4db8ff',
+        backgroundColor: '#6cab3c',
         color: '#333',
         height: 40,
         width: '100%',
@@ -568,7 +642,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     timerStopButtonStyle: {
-        backgroundColor: '#ff471a',
+        backgroundColor: 'grey',
         color: '#333',
         height: 40,
         width: '100%',
@@ -588,17 +662,20 @@ const styles = StyleSheet.create({
         borderRadius: 0,
         width: '100%',
         borderWidth: 1,
-        borderColor: '#dfdfdf'
+        borderColor: '#dfdfdf',
+        borderRadius: 5
     },
     textareaStyle: {
         height: 120,
         textAlignVertical: 'top',
+        borderRadius: 10
     },
     contactSectionStyle: {
         flexDirection: 'row',
         height: 40,
         // marginVertical: 10,
         alignItems: 'center',
+        borderRadius: 5
     },
     schedulebuttonStyle: {
         backgroundColor: '#6cab3c',
@@ -634,7 +711,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 15,
         borderWidth: 1,
         borderColor: '#dfdfdf',
-        // borderRadius: 8
+        borderRadius: 5
     },
     buttonTextStyle: {
         color: '#FFFFFF',
