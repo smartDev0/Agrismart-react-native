@@ -49,75 +49,88 @@ class UpdateProfile extends React.Component {
         return (
             <ScrollView style={styles.mainSectionStyle} bounces='false' contentContainerStyle={{ alignItems: 'center' }}>
                 <Loader loading={this.state.loading} />
-                <View style={[styles.SectionStyle, { marginTop: 20 }]}>
-                    <TextInput
-                        value={this.state.firstName}
-                        onChangeText={(text) => this.setState({ firstName: text })}
-                        style={styles.inputStyle}
-                        placeholder="First Name"
-                        placeholderTextColor="#a6b0bb"
-                        keyboardType="default"
-                        onSubmitEditing={Keyboard.dismiss}
-                        blurOnSubmit={false}
-                    />
-                </View>
-                <View style={styles.SectionStyle}>
-                    <TextInput
-                        value={this.state.lastName}
-                        onChangeText={(text) => this.setState({ lastName: text })}
-                        style={styles.inputStyle}
-                        placeholder="Last Name"
-                        placeholderTextColor="#a6b0bb"
-                        keyboardType="default"
-                        onSubmitEditing={Keyboard.dismiss}
-                        blurOnSubmit={false}
-                    />
-                </View>
-                <View style={[styles.SectionStyle, { marginTop: 20 }]}>
-                    <TextInput
-                        value={this.state.email}
-                        onChangeText={(text) => this.setState({ email: text })}
-                        style={styles.inputStyle}
-                        placeholder="Email"
-                        placeholderTextColor="#a6b0bb"
-                        keyboardType="default"
-                        onSubmitEditing={Keyboard.dismiss}
-                        blurOnSubmit={false}
-                    />
-                </View>
-                <View style={styles.SectionStyle}>
-                    <TextInput
-                        value={this.state.password}
-                        onChangeText={(text) => this.setState({ password: text })}
-                        style={styles.inputStyle}
-                        placeholder="Password"
-                        placeholderTextColor="#a6b0bb"
-                        keyboardType="default"
-                        onSubmitEditing={Keyboard.dismiss}
-                        blurOnSubmit={false}
-                        secureTextEntry={true}
-                    />
-                </View>
-                <View style={styles.SectionStyle}>
-                    <TextInput
-                        value={this.state.pinValue}
-                        onChangeText={(text) => this.setState({ pinValue: text })}
-                        style={styles.inputStyle}
-                        placeholder="Pin"
-                        placeholderTextColor="#a6b0bb"
-                        keyboardType="default"
-                        onSubmitEditing={Keyboard.dismiss}
-                        blurOnSubmit={false}
-                        secureTextEntry={true}
-                    />
-                </View>
-                <View style={styles.SectionStyle}>
-                    <TouchableOpacity
-                        style={styles.schedulebuttonStyle}
-                        activeOpacity={0.5}
-                        onPress={() => this.props.navigation.navigate("MyProfile")}>
-                        <Text style={styles.buttonTextStyle}>Update</Text>
-                    </TouchableOpacity>
+                <View style={{
+                    backgroundColor: 'white', paddingVertical: 20,
+                    paddingHorizontal: 15,
+                    marginBottom: 40,
+                    width: '100%',
+                    borderTopColor: '#6cab3c',
+                    borderTopWidth: 5,
+                    borderRadius: 4,
+                    borderColor: '#C3C4C6',
+                    borderWidth: 1
+                }}>
+                    <View style={[styles.SectionStyle, { marginTop: 20 }]}>
+                        <TextInput
+                            value={this.state.firstName}
+                            onChangeText={(text) => this.setState({ firstName: text })}
+                            style={styles.inputStyle}
+                            placeholder="First Name"
+                            placeholderTextColor="#a6b0bb"
+                            keyboardType="default"
+                            onSubmitEditing={Keyboard.dismiss}
+                            blurOnSubmit={false}
+                        />
+                    </View>
+                    <View style={styles.SectionStyle}>
+                        <TextInput
+                            value={this.state.lastName}
+                            onChangeText={(text) => this.setState({ lastName: text })}
+                            style={styles.inputStyle}
+                            placeholder="Last Name"
+                            placeholderTextColor="#a6b0bb"
+                            keyboardType="default"
+                            onSubmitEditing={Keyboard.dismiss}
+                            blurOnSubmit={false}
+                        />
+                    </View>
+                    <View style={[styles.SectionStyle, { marginTop: 20 }]}>
+                        <TextInput
+                            value={this.state.email}
+                            onChangeText={(text) => this.setState({ email: text })}
+                            style={styles.inputStyle}
+                            placeholder="Email"
+                            placeholderTextColor="#a6b0bb"
+                            keyboardType="default"
+                            onSubmitEditing={Keyboard.dismiss}
+                            blurOnSubmit={false}
+                        />
+                    </View>
+                    <View style={styles.SectionStyle}>
+                        <TextInput
+                            value={this.state.password}
+                            onChangeText={(text) => this.setState({ password: text })}
+                            style={styles.inputStyle}
+                            placeholder="Password"
+                            placeholderTextColor="#a6b0bb"
+                            keyboardType="default"
+                            onSubmitEditing={Keyboard.dismiss}
+                            blurOnSubmit={false}
+                            secureTextEntry={true}
+                        />
+                    </View>
+                    <View style={styles.SectionStyle}>
+                        <TextInput
+                            value={this.state.pinValue}
+                            onChangeText={(text) => this.setState({ pinValue: text })}
+                            style={styles.inputStyle}
+                            placeholder="Pin"
+                            placeholderTextColor="#a6b0bb"
+                            keyboardType="default"
+                            onSubmitEditing={Keyboard.dismiss}
+                            blurOnSubmit={false}
+                            secureTextEntry={true}
+                        />
+                    </View>
+                    <View style={styles.SectionStyle}>
+                        <TouchableOpacity
+                            style={styles.schedulebuttonStyle}
+                            activeOpacity={0.5}
+                            onPress={() => this.props.navigation.navigate("MyProfile")}>
+                            <Text style={styles.buttonTextStyle}>Update</Text>
+                        </TouchableOpacity>
+                    </View>
+
                 </View>
             </ScrollView>
         )

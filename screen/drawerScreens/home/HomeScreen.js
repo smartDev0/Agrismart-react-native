@@ -274,11 +274,10 @@ class HomeScreen extends React.Component {
                         <AntDesign name="clockcircleo" size={20} color="#6cab3c" />
                         <Text style={{ fontSize: 17, fontWeight: '500', marginLeft: 5 }}>
                             Total Hours
-                    </Text>
+                        </Text>
                     </View>
                     <View style={[styles.totalSectionStyle, styles.shadowStyle,]}>
                         <TouchableOpacity
-
                             activeOpacity={0.5}
                             onPress={() => this.props.navigation.navigate('ViewTimesheet')}
                         >

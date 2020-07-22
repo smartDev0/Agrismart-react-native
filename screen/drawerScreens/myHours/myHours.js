@@ -6,6 +6,7 @@ import Loader from '../../components/loader';
 import RNPickerSelect from 'react-native-picker-select';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 class MyHours extends React.Component {
     constructor(props) {
@@ -117,6 +118,29 @@ class MyHours extends React.Component {
                     borderColor: '#C3C4C6',
                     borderWidth: 1
                 }}>
+                    <View style={styles.titleSectionStyle}>
+                        <AntDesign name="clockcircleo" size={20} color="#6cab3c" />
+                        <Text style={{ fontSize: 17, fontWeight: '500', marginLeft: 5 }}>
+                            My Hours
+                        </Text>
+                    </View>
+                    <View style={[styles.totalSectionStyle, styles.shadowStyle,]}>
+                        <TouchableOpacity
+                            activeOpacity={0.5}
+                            onPress={() => this.props.navigation.navigate('ViewTimesheet')}
+                        >
+                            <View style={{ flex: 1, flexDirection: 'column' }}>
+                                <Text style={[styles.titleStyle, { color: 'white', fontSize: 16 }]}>Total</Text>
+                                <Text style={{ color: 'white', paddingTop: 5 }}>
+                                    3h 09m
+                        </Text>
+                                {/* <View style={{ flexDirection: 'row', position: 'absolute', right: 0, alignItems: 'center', top: 8 }}>
+                                <Text style={{ fontSize: 20, color: 'white' }}> 00 m 21</Text>
+                            </View> */}
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+
                     {this.renderRow()}
                 </View>
 
@@ -168,5 +192,18 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.1,
         shadowRadius: 3.84,
         elevation: 5,
-    }
+    },
+    totalSectionStyle: {
+        backgroundColor: '#6cab3c',
+        padding: 10,
+        marginVertical: 7,
+        borderRadius: 7,
+        width: '100%'
+    },
+    titleSectionStyle: {
+        flexDirection: 'row',
+        width: '100%',
+        marginVertical: 10,
+        alignItems: 'center',
+    },
 });

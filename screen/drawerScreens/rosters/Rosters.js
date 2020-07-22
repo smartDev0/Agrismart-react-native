@@ -138,10 +138,9 @@ class Rosters extends React.Component {
                             Rosters
                         </Text>
                 </View>
-
                 {
                     this.state.days.map((data, i) =>
-                        <View style={[styles.sectionStyle, styles.shadowStyle, { borderLeftWidth: 4, borderColor: this.getRandomColor() }]}>
+                        <View style={[styles.sectionStyle, styles.shadowStyle, { borderLeftWidth: 4, borderColor: '#6cab3c' }]}>
                             <View style={{ flex: 1, flexDirection: 'column' }}>
                                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                                     <Icon name="calendar-o" size={20} color="#6cab3c" />
@@ -151,7 +150,6 @@ class Rosters extends React.Component {
                         </View>
                     )
                 }
-
                 </View>
             </ScrollView >
         )
@@ -161,15 +159,15 @@ class Rosters extends React.Component {
 export default Rosters;
 const pickerSelectStyles = StyleSheet.create({
 
-    headlessAndroidContainer: {
-        backgroundColor: '#FFFFFF',
+                    headlessAndroidContainer: {
+                    backgroundColor: '#FFFFFF',
         flex: 1,
     },
     iconContainer: { top: 12, right: 10, },
     inputAndroid: { height: 40, flex: 1, },
     inputIOS: { height: 40, paddingLeft: 10, },
     viewContainer: {
-        flex: 1,
+                    flex: 1,
         borderWidth: 1,
         borderColor: '#dfdfdf',
         backgroundColor: '#FFFFFF',
@@ -177,20 +175,20 @@ const pickerSelectStyles = StyleSheet.create({
     },
 });
 const styles = StyleSheet.create({
-    mainSectionStyle: {
-        backgroundColor: '#f4f5f7',
+                    mainSectionStyle: {
+                    backgroundColor: '#f4f5f7',
         paddingVertical: 20,
         paddingHorizontal: 15,
         height: '100%'
     },
     contactSectionStyle: {
-        flexDirection: 'row',
+                    flexDirection: 'row',
         height: 40,
         marginVertical: 5,
         alignItems: 'center',
     },
     daySectionStyle: {
-        flexDirection: 'row',
+                    flexDirection: 'row',
         height: 40,
         marginVertical: 5,
         alignItems: 'center',
@@ -199,29 +197,29 @@ const styles = StyleSheet.create({
         width: '100%',
     },
     sectionStyle: {
-        backgroundColor: '#FFFFFF',
+                    backgroundColor: '#FFFFFF',
         padding: 10,
         marginVertical: 7,
         borderRadius: 7,
         width: '100%'
     },
     titleStyle: {
-        marginRight: 80,
+                    marginRight: 80,
         fontSize: 17,
     },
     buttonTextStyle: {
-        color: '#FFFFFF',
+                    color: '#FFFFFF',
         paddingVertical: 7,
         fontSize: 16,
     },
     titleSectionStyle: {
-        flexDirection: 'row',
+                    flexDirection: 'row',
         width: '100%',
         marginVertical: 10,
         alignItems: 'center',
     },
     shadowStyle: {
-        shadowColor: "#000",
+                    shadowColor: "#000",
         shadowOffset: {
             width: 1,
             height: 2,
