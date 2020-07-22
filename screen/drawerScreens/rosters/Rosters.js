@@ -81,9 +81,7 @@ class Rosters extends React.Component {
                                     return <Ionicons name="ios-arrow-down" size={15} />
                                 }}
                                 style={{
-                                    inputAndroid: { height: 40, paddingLeft: 10, borderWidth: 1, borderColor: '#dfdfdf', backgroundColor: '#FFFFFF', borderRadius: 5 },
-                                    inputIOS: { height: 40, paddingLeft: 10, borderWidth: 1, borderColor: '#dfdfdf', backgroundColor: '#FFFFFF' },
-                                    iconContainer: { top: 12, right: 10 }
+                                    ...pickerSelectStyles
                                 }}
                                 placeholder={{ label: 'Type', value: '' }}
                                 onValueChange={(value) => console.log(value)}
@@ -110,9 +108,7 @@ class Rosters extends React.Component {
                                     return <Ionicons name="ios-arrow-down" size={15} />
                                 }}
                                 style={{
-                                    inputAndroid: { height: 40, paddingLeft: 10, borderWidth: 1, borderColor: '#dfdfdf', backgroundColor: '#FFFFFF' },
-                                    inputIOS: { height: 40, paddingLeft: 10, borderWidth: 1, borderColor: '#dfdfdf', backgroundColor: '#FFFFFF' },
-                                    iconContainer: { top: 12, right: 10 }
+                                    ...pickerSelectStyles
                                 }}
                                 placeholder={{ label: 'Month', value: '' }}
                                 onValueChange={(value) => console.log(value)}
@@ -140,30 +136,46 @@ class Rosters extends React.Component {
                         <MaterialCommunityIcons name="flask-outline" size={20} color="#6cab3c" />
                         <Text style={{ fontSize: 17, fontWeight: '500', marginLeft: 5 }}>
                             Rosters
-                    </Text>
-                    </View>
+                        </Text>
+                </View>
 
-                    {
-                        this.state.days.map((data, i) =>
-                            <View style={[styles.sectionStyle, styles.shadowStyle, { borderLeftWidth: 4, borderColor: this.getRandomColor() }]}>
-                                <View style={{ flex: 1, flexDirection: 'column' }}>
-                                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                                        <Icon name="calendar-o" size={20} color="#6cab3c" />
-                                        <Text style={{ fontSize: 16 }}> {data}</Text>
-                                    </View>
+                {
+                    this.state.days.map((data, i) =>
+                        <View style={[styles.sectionStyle, styles.shadowStyle, { borderLeftWidth: 4, borderColor: this.getRandomColor() }]}>
+                            <View style={{ flex: 1, flexDirection: 'column' }}>
+                                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                    <Icon name="calendar-o" size={20} color="#6cab3c" />
+                                    <Text style={{ fontSize: 16 }}> {data}</Text>
                                 </View>
                             </View>
-                        )
-                    }
+                        </View>
+                    )
+                }
 
                 </View>
-            </ScrollView>
+            </ScrollView >
         )
     }
 }
 
 export default Rosters;
+const pickerSelectStyles = StyleSheet.create({
 
+    headlessAndroidContainer: {
+        backgroundColor: '#FFFFFF',
+        flex: 1,
+    },
+    iconContainer: { top: 12, right: 10, },
+    inputAndroid: { height: 40, flex: 1, },
+    inputIOS: { height: 40, paddingLeft: 10, },
+    viewContainer: {
+        flex: 1,
+        borderWidth: 1,
+        borderColor: '#dfdfdf',
+        backgroundColor: '#FFFFFF',
+        borderRadius: 5, height: 40,
+    },
+});
 const styles = StyleSheet.create({
     mainSectionStyle: {
         backgroundColor: '#f4f5f7',

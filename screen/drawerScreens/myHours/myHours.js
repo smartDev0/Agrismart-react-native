@@ -27,6 +27,14 @@ class MyHours extends React.Component {
             today: new Date(),
         })
     }
+    getRandomColor = () => {
+        var letters = '0123456789ABCDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
     renderRow() {
         return (
             <>
@@ -35,41 +43,43 @@ class MyHours extends React.Component {
 
                         {
                             this.state.today.toDateString() == new Date(Date.parse(data)).toDateString() ? (
-                                <View style={{
-                                    justifyContent: 'space-between',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    flexDirection: 'row',
-                                }}>
-                                    <View style={{ width: '50%' }}>
-                                        <Text style={{ textAlign: 'left', color: 'green' }}>
-                                            {/* {new Date(data)} */}
-                                            {data}
-                                        </Text>
-                                    </View>
-                                    <View style={{ width: '50%' }}>
-                                        <Text style={{ textAlign: 'right', color: 'green' }}>
-                                            8
-                                        </Text>
-                                    </View>
-                                </View>
-                            ) : (
+
+                                <View style={[styles.sectionStyle, styles.shadowStyle, { borderLeftWidth: 4, borderColor: 'green' }]}>
                                     <View style={{
                                         justifyContent: 'space-between',
                                         display: 'flex',
                                         alignItems: 'center',
                                         flexDirection: 'row',
                                     }}>
-                                        <View style={{ width: '50%' }}>
-                                            <Text style={{ textAlign: 'left' }}>
-                                                {/* {new Date(data)} */}
-                                                {data}
-                                            </Text>
+                                        <View style={{ flexDirection: 'row', alignItems: 'center', color: 'green' }}>
+                                            <Icon name="calendar-o" size={20} color="#6cab3c" />
+                                            <Text style={{ fontSize: 16, color: 'green' }}> {data}</Text>
                                         </View>
                                         <View style={{ width: '50%' }}>
-                                            <Text style={{ textAlign: 'right' }}>
+                                            <Text style={{ textAlign: 'right', color: 'green' }}>
                                                 8
-                                        </Text>
+                                                </Text>
+                                        </View>
+                                    </View>
+                                </View>
+                            ) : (
+
+                                    <View style={[styles.sectionStyle, styles.shadowStyle]}>
+                                        <View style={{
+                                            justifyContent: 'space-between',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            flexDirection: 'row',
+                                        }}>
+                                            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                                <Icon name="calendar-o" size={20} color="#6cab3c" />
+                                                <Text style={{ fontSize: 16 }}> {data}</Text>
+                                            </View>
+                                            <View style={{ width: '50%' }}>
+                                                <Text style={{ textAlign: 'right' }}>
+                                                    8
+                                                </Text>
+                                            </View>
                                         </View>
                                     </View>
                                 )
@@ -96,8 +106,21 @@ class MyHours extends React.Component {
         return (
             <ScrollView style={styles.mainSectionStyle} bounces='false' contentContainerStyle={{ alignItems: 'center' }}>
                 <Loader loading={this.state.loading} />
-                {this.renderRow()}
-                <View style={{ padding: 10 }}></View>
+                <View style={{
+                    backgroundColor: 'white', paddingVertical: 20,
+                    paddingHorizontal: 15,
+                    marginBottom: 40,
+                    width: '100%',
+                    borderTopColor: '#6cab3c',
+                    borderTopWidth: 5,
+                    borderRadius: 4,
+                    borderColor: '#C3C4C6',
+                    borderWidth: 1
+                }}>
+                    {this.renderRow()}
+                </View>
+
+                {/* <View style={{ padding: 10 }}></View> */}
             </ScrollView>
         )
     }
@@ -121,12 +144,29 @@ const styles = StyleSheet.create({
     },
     daySectionStyle: {
         flexDirection: 'row',
-        height: 40,
-        marginVertical: 5,
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        borderBottomColor: 'grey',
-        borderBottomWidth: 1,
+        // height: 40,
+        // marginVertical: 5,
+        // alignItems: 'center',
+        // justifyContent: 'space-between',
+        // borderBottomColor: 'grey',
+        // borderBottomWidth: 1,
         width: '100%',
+    },
+    sectionStyle: {
+        backgroundColor: '#FFFFFF',
+        padding: 10,
+        marginVertical: 7,
+        borderRadius: 7,
+        width: '100%'
+    },
+    shadowStyle: {
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 1,
+            height: 2,
+        },
+        shadowOpacity: 0.1,
+        shadowRadius: 3.84,
+        elevation: 5,
     }
 });
