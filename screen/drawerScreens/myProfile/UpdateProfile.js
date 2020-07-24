@@ -57,7 +57,7 @@ class UpdateProfile extends React.Component {
                     borderTopColor: '#6cab3c',
                     borderTopWidth: 5,
                     borderRadius: 4,
-                    borderColor: '#C3C4C6',
+                    borderColor: '#f4f5f7',
                     borderWidth: 1
                 }}>
                     <View style={[styles.SectionStyle, { marginTop: 20 }]}>

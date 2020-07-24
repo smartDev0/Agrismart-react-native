@@ -8,6 +8,7 @@ import RNPickerSelect from 'react-native-picker-select';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 class Rosters extends React.Component {
     constructor(props) {
@@ -63,7 +64,7 @@ class Rosters extends React.Component {
                     borderTopColor: '#6cab3c',
                     borderTopWidth: 5,
                     borderRadius: 4,
-                    borderColor: '#C3C4C6',
+                    borderColor: '#f4f5f7',
                     borderWidth: 1
                 }}>
                     <Loader loading={this.state.loading} />
@@ -78,17 +79,33 @@ class Rosters extends React.Component {
                                     { label: 'Hamilton', value: 'hamilton' },
                                 ]}
                                 Icon={() => {
-                                    return <Ionicons name="ios-arrow-down" size={15} />
+                                    return <MaterialIcons name="keyboard-arrow-down" size={20} style={{
+                                        color: '#dbdcde'
+                                    }} />
                                 }}
+                                useNativeAndroidPickerStyle={false}
                                 style={{
-                                    ...pickerSelectStyles
+                                    ...pickerSelectStyles,
+                                    viewContainer: {
+                                        flex: 1,
+                                        borderWidth: 1,
+                                        borderColor: '#dfdfdf',
+                                        backgroundColor: '#FFFFFF',
+                                        borderRadius: 5,
+
+                                    },
+                                    placeholder: {
+                                        color: '#C3C4C6',
+                                        fontSize: 13,
+                                    },
+                                    iconContainer: { top: 12, right: 10, },
                                 }}
                                 placeholder={{ label: 'Type', value: '' }}
                                 onValueChange={(value) => console.log(value)}
                             />
                         </View>
                         <View style={{ flex: 0.02 }}></View>
-                        <View style={{ flex: 0.3 }}>
+                        <View style={{ flex: 0.32 }}>
                             <RNPickerSelect
                                 items={[
                                     { label: 'January', value: 'January' },
@@ -105,19 +122,35 @@ class Rosters extends React.Component {
                                     { label: 'December', value: 'December' },
                                 ]}
                                 Icon={() => {
-                                    return <Ionicons name="ios-arrow-down" size={15} />
+                                    return <MaterialIcons name="keyboard-arrow-down" size={20} style={{
+                                        color: '#dbdcde'
+                                    }} />
                                 }}
+                                useNativeAndroidPickerStyle={false}
                                 style={{
-                                    ...pickerSelectStyles
+                                    ...pickerSelectStyles,
+                                    viewContainer: {
+                                        flex: 1,
+                                        borderWidth: 1,
+                                        borderColor: '#dfdfdf',
+                                        backgroundColor: '#FFFFFF',
+                                        borderRadius: 5,
+
+                                    },
+                                    placeholder: {
+                                        color: '#C3C4C6',
+                                        fontSize: 13,
+                                    },
+                                    iconContainer: { top: 12, right: 10, },
                                 }}
                                 placeholder={{ label: 'Month', value: '' }}
                                 onValueChange={(value) => console.log(value)}
                             />
                         </View>
                         <View style={{ flex: 0.02 }}></View>
-                        <View style={{ flex: 0.26, display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+                        <View style={{ flex: 0.24, display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
                             <View>
-                                <Text style={{}}>
+                                <Text style={{ color: '#C3C4C6', }}>
                                     RTO
                             </Text>
                             </View>
@@ -137,21 +170,21 @@ class Rosters extends React.Component {
                         <Text style={{ fontSize: 17, fontWeight: '500', marginLeft: 5 }}>
                             Rosters
                         </Text>
-                </View>
-                {
-                    this.state.days.map((data, i) =>
-                        <View style={[styles.sectionStyle, styles.shadowStyle, { borderLeftWidth: 4, borderColor: '#6cab3c' }]}>
-                            <View style={{ flex: 1, flexDirection: 'column' }}>
-                                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                                    <Icon name="calendar-o" size={20} color="#6cab3c" />
-                                    <Text style={{ fontSize: 16 }}> {data}</Text>
+                    </View>
+                    {
+                        this.state.days.map((data, i) =>
+                            <View style={[styles.sectionStyle, styles.shadowStyle, { borderLeftWidth: 4, borderColor: '#6cab3c' }]}>
+                                <View style={{ flex: 1, flexDirection: 'column' }}>
+                                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                        <Icon name="calendar-o" size={20} color="#6cab3c" />
+                                        <Text style={{ fontSize: 16 }}> {data}</Text>
+                                    </View>
                                 </View>
                             </View>
-                        </View>
-                    )
-                }
+                        )
+                    }
                 </View>
-            </ScrollView >
+            </ScrollView>
         )
     }
 }
@@ -159,36 +192,47 @@ class Rosters extends React.Component {
 export default Rosters;
 const pickerSelectStyles = StyleSheet.create({
 
-                    headlessAndroidContainer: {
-                    backgroundColor: '#FFFFFF',
-        flex: 1,
-    },
-    iconContainer: { top: 12, right: 10, },
-    inputAndroid: { height: 40, flex: 1, },
-    inputIOS: { height: 40, paddingLeft: 10, },
-    viewContainer: {
-                    flex: 1,
+    inputAndroid: {
+        // flex: 1,
         borderWidth: 1,
         borderColor: '#dfdfdf',
-        backgroundColor: '#FFFFFF',
-        borderRadius: 5, height: 40,
+        height: 40,
+        fontSize: 13,
+        paddingHorizontal: 10,
+        paddingVertical: 1,
+        borderWidth: 1,
+        borderRadius: 5,
+        color: 'grey',
+        paddingRight: 30,
+    },
+    inputIOS: {
+        borderWidth: 1,
+        borderColor: '#dfdfdf',
+        height: 40,
+        fontSize: 13,
+        paddingHorizontal: 10,
+        paddingVertical: 1,
+        borderWidth: 1,
+        borderRadius: 5,
+        color: 'grey',
+        paddingRight: 30,
     },
 });
 const styles = StyleSheet.create({
-                    mainSectionStyle: {
-                    backgroundColor: '#f4f5f7',
+    mainSectionStyle: {
+        backgroundColor: '#f4f5f7',
         paddingVertical: 20,
         paddingHorizontal: 15,
         height: '100%'
     },
     contactSectionStyle: {
-                    flexDirection: 'row',
+        flexDirection: 'row',
         height: 40,
         marginVertical: 5,
         alignItems: 'center',
     },
     daySectionStyle: {
-                    flexDirection: 'row',
+        flexDirection: 'row',
         height: 40,
         marginVertical: 5,
         alignItems: 'center',
@@ -197,29 +241,29 @@ const styles = StyleSheet.create({
         width: '100%',
     },
     sectionStyle: {
-                    backgroundColor: '#FFFFFF',
+        backgroundColor: '#FFFFFF',
         padding: 10,
         marginVertical: 7,
         borderRadius: 7,
         width: '100%'
     },
     titleStyle: {
-                    marginRight: 80,
+        marginRight: 80,
         fontSize: 17,
     },
     buttonTextStyle: {
-                    color: '#FFFFFF',
+        color: '#FFFFFF',
         paddingVertical: 7,
         fontSize: 16,
     },
     titleSectionStyle: {
-                    flexDirection: 'row',
+        flexDirection: 'row',
         width: '100%',
         marginVertical: 10,
         alignItems: 'center',
     },
     shadowStyle: {
-                    shadowColor: "#000",
+        shadowColor: "#000",
         shadowOffset: {
             width: 1,
             height: 2,

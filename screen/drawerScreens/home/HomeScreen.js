@@ -21,6 +21,7 @@ import DatePicker from 'react-native-datepicker';
 import RNPickerSelect from 'react-native-picker-select';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 class HomeScreen extends React.Component {
     constructor(props) {
         super(props);
@@ -89,12 +90,12 @@ class HomeScreen extends React.Component {
                 <View style={{
                     backgroundColor: 'white', paddingVertical: 20,
                     paddingHorizontal: 15,
-                    marginBottom: 40,
+                    marginBottom: 10,
                     width: '100%',
                     borderTopColor: '#6cab3c',
                     borderTopWidth: 5,
                     borderRadius: 4,
-                    borderColor: '#C3C4C6',
+                    borderColor: '#f4f5f7',
                     borderWidth: 1
                 }}>
                     <Loader loading={this.state.loading} />
@@ -270,12 +271,12 @@ class HomeScreen extends React.Component {
                             </View>
                         </Modal>
                     </View>
-                    <View style={styles.titleSectionStyle}>
+                    {/* <View style={styles.titleSectionStyle}>
                         <AntDesign name="clockcircleo" size={20} color="#6cab3c" />
                         <Text style={{ fontSize: 17, fontWeight: '500', marginLeft: 5 }}>
                             Total Hours
                         </Text>
-                    </View>
+                    </View> */}
                     <View style={[styles.totalSectionStyle, styles.shadowStyle,]}>
                         <TouchableOpacity
                             activeOpacity={0.5}
@@ -292,85 +293,146 @@ class HomeScreen extends React.Component {
                             </View>
                         </TouchableOpacity>
                     </View>
+                </View>
+                <View style={{
+                    backgroundColor: 'white', paddingVertical: 20,
+                    paddingHorizontal: 15,
+                    marginBottom: 40,
+                    width: '100%',
+                    borderTopColor: '#f4f5f7',
+                    borderTopWidth: 1,
+                    borderRadius: 4,
+                    borderColor: '#f4f5f7',
+                    borderWidth: 1
+                }}>
                     <View style={styles.titleSectionStyle}>
                         <Text style={styles.blackTitleTextStyle}>
                             Date
-                    </Text>
+                        </Text>
                     </View>
                     <View style={styles.contactSectionStyle}>
                         <DatePicker
                             style={{ width: '100%', backgroundColor: '#FFFFFF' }}
                             date={this.state.today}
                             mode="date"
-                            placeholder="Date"
-                            format="MM/DD/YYYY"
+                            placeholder="Select Date"
+                            format="DD/MM/YYYY"
                             confirmBtnText="Confirm"
                             cancelBtnText="Cancel"
                             customStyles={{
                                 dateIcon: {
                                     position: 'absolute',
-                                    right: 0,
-                                    top: 4,
+                                    height: 0,
+                                    width: 0,
+                                    marginRight: -30
                                 },
                                 dateInput: {
                                     borderColor: '#dfdfdf',
-                                    borderRadius: 5
-                                }
+                                    borderRadius: 5,
+                                    alignItems: 'flex-start',
+                                    paddingLeft: 10,
+
+                                },
+                                dateText: {
+                                    fontSize: 13,
+                                    color: "#C7C7C7"
+                                },
+                                placeholderText: {
+                                    fontSize: 13,
+                                    color: "#C7C7C7"
+                                },
                             }}
+
                             onDateChange={(date) => { this.setState({ today: date }) }}
                         />
+                        <MaterialIcons name="keyboard-arrow-down" size={20} style={{
+                            right: 10, position: 'absolute', color: '#dbdcde'
+                        }} />
                     </View>
                     <View style={styles.titleSectionStyle}>
                         <Text style={styles.blackTitleTextStyle}>
-                            Jobs
+                            Job
                     </Text>
                     </View>
-                    <View style={styles.contactSectionStyle}>
-                        <RNPickerSelect
-                            onValueChange={(value) => console.log(value)}
-                            items={[
-                                { label: 'Football', value: 'football' },
-                                { label: 'Baseball', value: 'baseball' },
-                                { label: 'Hockey', value: 'hockey' },
-                            ]}
-                            Icon={() => {
-                                return <Ionicons name="ios-arrow-down" size={15} />
-                            }}
-                            placeholder={{ label: 'Select Job', value: '' }}
-                            style={{
-                                ...pickerSelectStyles
-                            }}
-                        />
-                    </View>
+
+                    <RNPickerSelect
+                        onValueChange={(value) => console.log(value)}
+                        items={[
+                            { label: 'Football', value: 'football' },
+                            { label: 'Baseball', value: 'baseball' },
+                            { label: 'Hockey', value: 'hockey' },
+                        ]}
+                        useNativeAndroidPickerStyle={true}
+                        Icon={() => {
+                            return <MaterialIcons name="keyboard-arrow-down" size={20} style={{
+                                color: '#dbdcde'
+                            }} />
+                        }}
+                        placeholder={{ label: 'Select Job', value: '' }}
+                        useNativeAndroidPickerStyle={false}
+                        style={{
+                            ...pickerSelectStyles,
+                            viewContainer: {
+                                flex: 1,
+                                borderWidth: 1,
+                                borderColor: '#dfdfdf',
+                                backgroundColor: '#FFFFFF',
+                                borderRadius: 5,
+                                width: 100
+                            },
+                            placeholder: {
+                                color: '#C3C4C6',
+                                fontSize: 13,
+                            },
+                            iconContainer: { top: 12, right: 10, },
+                        }}
+                    />
+
                     <View style={styles.titleSectionStyle}>
                         <Text style={styles.blackTitleTextStyle}>
                             Activity
                     </Text>
                     </View>
-                    <View style={styles.contactSectionStyle}>
-                        <RNPickerSelect
-                            onValueChange={(value) => console.log(value)}
-                            items={[
-                                { label: 'Football', value: 'football' },
-                                { label: 'Baseball', value: 'baseball' },
-                                { label: 'Hockey', value: 'hockey' },
-                            ]}
-                            Icon={() => {
-                                return <Ionicons name="ios-arrow-down" size={15} />
-                            }}
-                            placeholder={{ label: 'Select Activity', value: '' }}
-                            style={{
-                                ...pickerSelectStyles
-                            }}
-                        />
-                    </View>
+                    {/* <View style={styles.contactSectionStyle}> */}
+                    <RNPickerSelect
+                        onValueChange={(value) => console.log(value)}
+                        items={[
+                            { label: 'Football', value: 'football' },
+                            { label: 'Baseball', value: 'baseball' },
+                            { label: 'Hockey', value: 'hockey' },
+                        ]}
+                        Icon={() => {
+                            return <MaterialIcons name="keyboard-arrow-down" size={20} style={{
+                                color: '#dbdcde'
+                            }} />
+                        }}
+                        useNativeAndroidPickerStyle={false}
+                        placeholder={{ label: 'Select Activity', value: '' }}
+                        style={{
+                            ...pickerSelectStyles,
+                            viewContainer: {
+                                flex: 1,
+                                borderWidth: 1,
+                                borderColor: '#dfdfdf',
+                                backgroundColor: '#FFFFFF',
+                                borderRadius: 5,
+                                width: 100
+                            },
+                            placeholder: {
+                                color: '#C3C4C6',
+                                fontSize: 13,
+                            },
+                            iconContainer: { top: 12, right: 10, },
+                        }}
+                    />
+                    {/* </View> */}
                     <View style={styles.titleSectionStyle}>
                         <Text style={styles.blackTitleTextStyle}>
-                            Start Time (24 hr format)
+                            Start Time
                     </Text>
                     </View>
                     <View style={styles.contactSectionStyle}>
-                        <View style={{ flex: 0.35 }}>
+                        <View style={{ flex: 0.48 }}>
                             <TouchableOpacity
                                 style={styles.timerStartButtonStyle}
                                 activeOpacity={0.5}
@@ -379,12 +441,12 @@ class HomeScreen extends React.Component {
                                 <Text style={styles.buttonTextStyle}>Start</Text>
                             </TouchableOpacity>
                         </View>
-                        <View style={{ flex: 0.05 }}></View>
+                        <View style={{ flex: 0.04 }}></View>
                         <DatePicker
-                            style={{ width: '100%', backgroundColor: '#FFFFFF', flex: 0.6 }}
+                            style={{ width: '100%', backgroundColor: '#FFFFFF', flex: 0.48, }}
                             date={this.state.startTime}
                             mode="time"
-                            placeholder="Start Time"
+                            placeholder="or Select Start Time"
                             // format="MM/DD/YYYY"
                             confirmBtnText="Confirm"
                             cancelBtnText="Cancel"
@@ -397,21 +459,33 @@ class HomeScreen extends React.Component {
                                 },
                                 dateInput: {
                                     borderColor: '#dfdfdf',
-                                    borderRadius: 5
+                                    borderRadius: 5,
+                                    alignItems: 'flex-start',
+                                    paddingLeft: 10,
                                 }
+                                , dateText: {
+                                    fontSize: 13,
+                                    color: "#C7C7C7"
+                                },
+                                placeholderText: {
+                                    fontSize: 13,
+                                    color: "#C7C7C7"
+                                },
                             }}
                             onDateChange={(date) => { this.setState({ startTime: date }) }}
                         />
-
+                        <MaterialIcons name="keyboard-arrow-down" size={20} style={{
+                            right: 10, position: 'absolute', color: '#dbdcde'
+                        }} />
 
                     </View>
                     <View style={styles.titleSectionStyle}>
                         <Text style={styles.blackTitleTextStyle}>
-                            End Time (24 hr format)
+                            End Time
                     </Text>
                     </View>
                     <View style={styles.contactSectionStyle}>
-                        <View style={{ flex: 0.35 }}>
+                        <View style={{ flex: 0.48 }}>
                             <TouchableOpacity
                                 style={styles.timerStopButtonStyle}
                                 activeOpacity={0.5}
@@ -420,12 +494,12 @@ class HomeScreen extends React.Component {
                                 <Text style={styles.buttonTextStyle}>Stop</Text>
                             </TouchableOpacity>
                         </View>
-                        <View style={{ flex: 0.05 }}></View>
+                        <View style={{ flex: 0.04 }}></View>
                         <DatePicker
-                            style={{ width: '100%', backgroundColor: '#FFFFFF', flex: 0.6 }}
+                            style={{ width: '100%', backgroundColor: '#FFFFFF', flex: 0.48 }}
                             date={this.state.endTime}
                             mode="time"
-                            placeholder="End Time"
+                            placeholder="or Select End Time"
                             // format="MM/DD/YYYY"
                             confirmBtnText="Confirm"
                             cancelBtnText="Cancel"
@@ -439,12 +513,24 @@ class HomeScreen extends React.Component {
                                 },
                                 dateInput: {
                                     borderColor: '#dfdfdf',
-                                    borderRadius: 5
-                                }
+                                    borderRadius: 5,
+                                    alignItems: 'flex-start',
+                                    paddingLeft: 10,
+                                },
+                                dateText: {
+                                    fontSize: 13,
+                                    color: "#C7C7C7"
+                                },
+                                placeholderText: {
+                                    fontSize: 13,
+                                    color: "#C7C7C7"
+                                },
                             }}
                             onDateChange={(date) => { this.setState({ endTime: date }) }}
                         />
-
+                        <MaterialIcons name="keyboard-arrow-down" size={20} style={{
+                            right: 10, position: 'absolute', color: '#dbdcde'
+                        }} />
 
                     </View>
                     {/* <View style={styles.contactSectionStyle}>
@@ -475,8 +561,8 @@ class HomeScreen extends React.Component {
                     </View>
                     <View style={styles.titleSectionStyle}>
                         <Text style={styles.blackTitleTextStyle}>
-                            Unpaid Time (minutes)
-                    </Text>
+                            Unpaid Minutes
+                        </Text>
                     </View>
                     <View style={[styles.contactSectionStyle]}>
                         <TextInput
@@ -496,16 +582,39 @@ class HomeScreen extends React.Component {
                     </Text>
                     </View>
                     <View style={[styles.contactSectionStyle]}>
-                        <TextInput
-                            value={this.state.totalHour}
-                            onChangeText={(text) => this.setState({ totalHour: text })}
-                            style={styles.inputStyle}
-                            placeholder="Total Hours"
-                            placeholderTextColor="#a6b0bb"
-                            keyboardType="default"
-                            onSubmitEditing={Keyboard.dismiss}
-                            blurOnSubmit={false}
-                        />
+                        <View style={{ flex: 0.48 }}>
+                            <TextInput
+                                value={this.state.totalHour}
+                                onChangeText={(text) => this.setState({ totalHour: text })}
+                                style={styles.inputStyle}
+                                placeholder="Total Hours"
+                                placeholderTextColor="#a6b0bb"
+                                keyboardType="default"
+                                onSubmitEditing={Keyboard.dismiss}
+                                blurOnSubmit={false}
+                            />
+                        </View>
+                        <View style={{ flex: 0.02 }}></View>
+                        <View style={{ flex: 0.26 }}>
+                            <TouchableOpacity
+                                style={styles.timerStartButtonStyle}
+                                activeOpacity={0.5}
+                            // onPress={() => this.props.navigation.navigate("MyProfile")}
+                            >
+                                <Text style={styles.buttonTextStyle}>Day</Text>
+                            </TouchableOpacity>
+                        </View>
+                        <View style={{ flex: 0.02 }}></View>
+                        <View style={{ flex: 0.26 }}>
+                            <TouchableOpacity
+                                style={styles.timerStartButtonStyle}
+                                activeOpacity={0.5}
+                            // onPress={() => this.props.navigation.navigate("MyProfile")}
+                            >
+                                <Text style={styles.buttonTextStyle}>Half Day</Text>
+                            </TouchableOpacity>
+                        </View>
+
                     </View>
                     <View style={styles.titleSectionStyle}>
                         <Text style={styles.blackTitleTextStyle}>
@@ -549,19 +658,30 @@ class HomeScreen extends React.Component {
 export default HomeScreen;
 const pickerSelectStyles = StyleSheet.create({
 
-    headlessAndroidContainer: {
-        backgroundColor: '#FFFFFF',
-        flex: 1,
-    },
-    iconContainer: { top: 12, right: 10, },
-    inputAndroid: { height: 40, flex: 1, },
-    inputIOS: { height: 40, paddingLeft: 10, borderWidth: 1, borderColor: '#dfdfdf', backgroundColor: '#FFFFFF', borderRadius: 5, },
-    viewContainer: {
-        flex: 1,
+    inputAndroid: {
+        // flex: 1,
         borderWidth: 1,
         borderColor: '#dfdfdf',
-        backgroundColor: '#FFFFFF',
-        borderRadius: 5, height: 40,
+        height: 40,
+        fontSize: 13,
+        paddingHorizontal: 10,
+        paddingVertical: 1,
+        borderWidth: 1,
+        borderRadius: 5,
+        color: 'grey',
+        paddingRight: 30,
+    },
+    inputIOS: {
+        borderWidth: 1,
+        borderColor: '#dfdfdf',
+        height: 40,
+        fontSize: 13,
+        paddingHorizontal: 10,
+        paddingVertical: 1,
+        borderWidth: 1,
+        borderRadius: 5,
+        color: 'grey',
+        paddingRight: 30,
     },
 });
 const styles = StyleSheet.create({
@@ -612,8 +732,8 @@ const styles = StyleSheet.create({
     },
     buttonTextStyle: {
         color: '#FFFFFF',
-        paddingVertical: 7,
-        fontSize: 16,
+        paddingVertical: 4,
+        fontSize: 15,
     },
     titleSectionStyle: {
         flexDirection: 'row',
@@ -648,7 +768,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     timerStopButtonStyle: {
-        backgroundColor: 'grey',
+        backgroundColor: 'lightgrey',
         color: '#333',
         height: 40,
         width: '100%',
@@ -669,19 +789,26 @@ const styles = StyleSheet.create({
         width: '100%',
         borderWidth: 1,
         borderColor: '#dfdfdf',
-        borderRadius: 5
+        borderRadius: 5,
+        fontSize: 13,
+        color: "#C7C7C7"
     },
     textareaStyle: {
-        height: 120,
+        height: 60,
         textAlignVertical: 'top',
-        borderRadius: 10
+        borderRadius: 10,
+        fontSize: 13,
+        color: "#C7C7C7"
     },
     contactSectionStyle: {
         flexDirection: 'row',
         height: 40,
         // marginVertical: 10,
         alignItems: 'center',
-        borderRadius: 5
+        borderRadius: 5,
+        textAlign: 'left',
+        width: '100%'
+
     },
     schedulebuttonStyle: {
         backgroundColor: '#6cab3c',
@@ -717,7 +844,9 @@ const styles = StyleSheet.create({
         paddingHorizontal: 15,
         borderWidth: 1,
         borderColor: '#dfdfdf',
-        borderRadius: 5
+        borderRadius: 5,
+        fontSize: 13,
+        color: "#C7C7C7"
     },
     buttonTextStyle: {
         color: '#FFFFFF',

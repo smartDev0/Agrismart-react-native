@@ -16,7 +16,7 @@ import {
     Button,
     Alert,
 } from 'react-native';
-
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Divider } from 'react-native-elements';
@@ -56,27 +56,43 @@ class Leave extends React.Component {
                     borderTopColor: '#6cab3c',
                     borderTopWidth: 5,
                     borderRadius: 4,
-                    borderColor: '#C3C4C6',
+                    borderColor: '#f4f5f7',
                     borderWidth: 1
                 }}>
                     <Loader loading={this.state.loading} />
-                    <View style={styles.contactSectionStyle}>
-                        <RNPickerSelect
-                            onValueChange={(value) => console.log(value)}
-                            items={[
-                                { label: 'Football', value: 'football' },
-                                { label: 'Baseball', value: 'baseball' },
-                                { label: 'Hockey', value: 'hockey' },
-                            ]}
-                            Icon={() => {
-                                return <Ionicons name="ios-arrow-down" size={15} />
-                            }}
-                            placeholder={{ label: 'Type', value: '' }}
-                            style={{
-                                ...pickerSelectStyles
-                            }}
-                        />
-                    </View>
+
+                    <RNPickerSelect
+                        onValueChange={(value) => console.log(value)}
+                        items={[
+                            { label: 'Football', value: 'football' },
+                            { label: 'Baseball', value: 'baseball' },
+                            { label: 'Hockey', value: 'hockey' },
+                        ]}
+                        Icon={() => {
+                            return <MaterialIcons name="keyboard-arrow-down" size={20} style={{
+                                color: '#dbdcde'
+                            }} />
+                        }}
+                        placeholder={{ label: 'Type', value: '' }}
+                        useNativeAndroidPickerStyle={false}
+                        style={{
+                            ...pickerSelectStyles,
+                            viewContainer: {
+                                flex: 1,
+                                borderWidth: 1,
+                                borderColor: '#dfdfdf',
+                                backgroundColor: '#FFFFFF',
+                                borderRadius: 5,
+                                width: 100
+                            },
+                            placeholder: {
+                                color: '#C3C4C6',
+                                fontSize: 13,
+                            },
+                            iconContainer: { top: 12, right: 10, },
+                        }}
+                    />
+
                     <View style={styles.SectionStyle}>
                         <DatePicker
                             style={{ width: '100%', backgroundColor: '#FFFFFF' }}
@@ -89,16 +105,31 @@ class Leave extends React.Component {
                             customStyles={{
                                 dateIcon: {
                                     position: 'absolute',
-                                    right: 0,
-                                    top: 4,
+                                    height: 0,
+                                    width: 0,
+                                    marginRight: -30
                                 },
                                 dateInput: {
                                     borderColor: '#dfdfdf',
-                                    borderRadius: 5
-                                }
+                                    borderRadius: 5,
+                                    alignItems: 'flex-start',
+                                    paddingLeft: 10,
+
+                                },
+                                dateText: {
+                                    fontSize: 13,
+                                    color: "#C7C7C7"
+                                },
+                                placeholderText: {
+                                    fontSize: 13,
+                                    color: "#C7C7C7"
+                                },
                             }}
                             onDateChange={(date) => { this.setState({ startDate: date }) }}
                         />
+                        <MaterialIcons name="keyboard-arrow-down" size={20} style={{
+                            right: 10, position: 'absolute', color: '#dbdcde'
+                        }} />
                     </View>
                     <View style={styles.SectionStyle}>
                         <DatePicker
@@ -112,16 +143,31 @@ class Leave extends React.Component {
                             customStyles={{
                                 dateIcon: {
                                     position: 'absolute',
-                                    right: 0,
-                                    top: 4,
+                                    height: 0,
+                                    width: 0,
+                                    marginRight: -30
                                 },
                                 dateInput: {
                                     borderColor: '#dfdfdf',
-                                    borderRadius: 5
-                                }
+                                    borderRadius: 5,
+                                    alignItems: 'flex-start',
+                                    paddingLeft: 10,
+
+                                },
+                                dateText: {
+                                    fontSize: 13,
+                                    color: "#C7C7C7"
+                                },
+                                placeholderText: {
+                                    fontSize: 13,
+                                    color: "#C7C7C7"
+                                },
                             }}
                             onDateChange={(date) => { this.setState({ endDate: date }) }}
                         />
+                        <MaterialIcons name="keyboard-arrow-down" size={20} style={{
+                            right: 10, position: 'absolute', color: '#dbdcde'
+                        }} />
                     </View>
                     <View style={styles.titleSectionStyle}>
                         <Text style={styles.blackTitleTextStyle}>
@@ -156,20 +202,32 @@ class Leave extends React.Component {
 
 export default Leave;
 const pickerSelectStyles = StyleSheet.create({
-    viewContainer: {
-        flex: 1,
-        borderWidth: 1, borderColor: '#dfdfdf',
-        backgroundColor: '#FFFFFF',
-        borderRadius: 5
-    },
-    headlessAndroidContainer: {
-        backgroundColor: '#FFFFFF',
-        flex: 1
-    },
-    iconContainer: { top: 12, right: 10 },
-    inputAndroid: { height: 40, },
-    inputIOS: { height: 40, },
 
+    inputAndroid: {
+        // flex: 1,
+        borderWidth: 1,
+        borderColor: '#dfdfdf',
+        height: 40,
+        fontSize: 13,
+        paddingHorizontal: 10,
+        paddingVertical: 1,
+        borderWidth: 1,
+        borderRadius: 5,
+        color: 'grey',
+        paddingRight: 30,
+    },
+    inputIOS: {
+        borderWidth: 1,
+        borderColor: '#dfdfdf',
+        height: 40,
+        fontSize: 13,
+        paddingHorizontal: 10,
+        paddingVertical: 1,
+        borderWidth: 1,
+        borderRadius: 5,
+        color: 'grey',
+        paddingRight: 30,
+    },
 });
 const styles = StyleSheet.create({
     mainSectionStyle: {
@@ -226,7 +284,7 @@ const styles = StyleSheet.create({
     titleSectionStyle: {
         flexDirection: 'row',
         width: '100%',
-        marginVertical: 10,
+        marginVertical: 0,
         alignItems: 'center',
     },
     contactSectionStyle: {
@@ -266,7 +324,7 @@ const styles = StyleSheet.create({
     },
     blackTitleTextStyle: {
         color: "#333",
-        fontSize: 17,
+        fontSize: 15,
     },
     plusIconStyle: {
         position: 'absolute',
